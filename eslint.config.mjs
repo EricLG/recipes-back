@@ -39,6 +39,14 @@ export default tseslint.config(
                     trailingComma: 'all',
                     printWidth: 160,
                     endOfLine: 'lf',
+                    overrides: [
+                        {
+                            files: '*.json',
+                            options: {
+                                tabWidth: 2,
+                            },
+                        },
+                    ],
                 },
             ],
         },
