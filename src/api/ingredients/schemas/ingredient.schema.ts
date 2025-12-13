@@ -23,6 +23,9 @@ export class Ingredient {
 
     @Prop({ default: 0 })
     totalSugars?: number;
+
+    @Prop({ default: false })
+    needReview?: boolean;
 }
 
 export type IngredientDocument = Ingredient & Document;
