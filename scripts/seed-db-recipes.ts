@@ -10,7 +10,7 @@ const pwd = process.env.MONGODB_PWD;
 const host = process.env.MONGODB_HOST;
 const mongoUri = 'mongodb://' + user + ':' + pwd + '@' + host + '/recipes?authSource=recipes';
 
-async function seedDbRecipes() {
+export async function seedDbRecipes() {
     try {
         console.log('Connecting to MongoDB...');
         await mongoose.connect(mongoUri);
@@ -54,11 +54,13 @@ async function seedDbRecipes() {
         console.log('\nRecipes seeding completed successfully!');
     } catch (error) {
         console.error('Error seeding recipes:', error);
-        process.exit(1);
+        throw error;
     } finally {
         await mongoose.disconnect();
         console.log('Disconnected from MongoDB');
     }
 }
 
-seedDbRecipes();
+if (require.main === module) {
+    seedDbRecipes();
+}
