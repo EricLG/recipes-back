@@ -1,13 +1,15 @@
 import * as mongoose from 'mongoose';
 import { seedIngredients } from './seed-ingredients';
 import { IngredientSchema } from '../src/api/ingredients/schemas/ingredient.schema';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 const user = process.env.MONGODB_USER;
 const pwd = process.env.MONGODB_PWD;
 const host = process.env.MONGODB_HOST;
 const mongoUri = 'mongodb://' + user + ':' + pwd + '@' + host + '/recipes?authSource=recipes';
 
-async function seedDatabase() {
+async function seedDbIngredients() {
     try {
         console.log('Connecting to MongoDB...');
         await mongoose.connect(mongoUri);
@@ -33,4 +35,4 @@ async function seedDatabase() {
     }
 }
 
-seedDatabase();
+seedDbIngredients();
