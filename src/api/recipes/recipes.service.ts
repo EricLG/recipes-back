@@ -18,7 +18,7 @@ export class RecipesService {
     }
 
     async findAll() {
-        return this.recipeModel.find().populate('ingredients.ingredient').exec();
+        return this.recipeModel.find().sort({name: 1}).populate('ingredients.ingredient').exec();
     }
 
     async findOne(id: string) {

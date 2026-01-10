@@ -30,7 +30,5 @@ export class Ingredient {
 
 export type IngredientDocument = Ingredient & Document;
 export const IngredientSchema = SchemaFactory.createForClass(Ingredient);
-IngredientSchema.virtual('id').get(function (this: IngredientDocument) {
-    return this._id?.toString();
-});
+
 IngredientSchema.set('toJSON', { virtuals: true });

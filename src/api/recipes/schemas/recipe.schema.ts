@@ -42,7 +42,5 @@ export class Recipe {
 
 export type RecipeDocument = Recipe & Document;
 export const RecipeSchema = SchemaFactory.createForClass(Recipe);
-RecipeSchema.virtual('id').get(function (this: RecipeDocument) {
-    return this._id?.toString();
-});
+
 RecipeSchema.set('toJSON', { virtuals: true });
