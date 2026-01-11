@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 
 import { seedDbFoods } from './seed-db-food';
+import { seedDbRecipes } from './seed-db-recipes';
 
 dotenv.config();
 const user = process.env.MONGODB_USER;
@@ -15,8 +16,8 @@ async function seedAll(mongoUri: string) {
         await seedDbFoods(mongoUri);
         console.log('\n--- Foods seeding completed ---\n');
 
-        // await seedDbRecipes();
-        // console.log('\n--- Recipes seeding completed ---\n');
+        await seedDbRecipes(mongoUri);
+        console.log('\n--- Recipes seeding completed ---\n');
 
         console.log('🎉 Full seeding completed successfully!');
     } catch (error) {

@@ -1,66 +1,74 @@
-// import * as mongoose from 'mongoose';
-// import { seedRecipes } from './seed-recipes';
-// import { RecipeSchema } from '../src/api/recipes/schemas/recipe.schema';
-// import { IngredientSchema } from '../src/api/ingredients/schemas/ingredient.schema';
-// import * as dotenv from 'dotenv';
+import * as mongoose from 'mongoose';
 
-// dotenv.config();
-// const user = process.env.MONGODB_USER;
-// const pwd = process.env.MONGODB_PWD;
-// const host = process.env.MONGODB_HOST;
-// const mongoUri = 'mongodb://' + user + ':' + pwd + '@' + host + '/recipes?authSource=recipes';
+import { MeasureSchema } from './../src/domain/food/schemas/measure.schema';
+import { FoodSchema } from './../src/domain/food/schemas/food.schema';
+import { RecipeCategory } from './../src/domain/recipes/enums/recipe-category.enum';
+import { seedRecipes } from './seed-recipes';
+import { RecipeSchema } from './../src/domain/recipes/schemas/recipe.schema';
+import { RecipeFoodSchema } from './../src/domain/recipes/schemas/recipe-food.schema';
 
-// export async function seedDbRecipes() {
-//     try {
-//         console.log('Connecting to MongoDB...');
-//         await mongoose.connect(mongoUri);
-//         console.log('✓ Connected to MongoDB');
+export async function seedDbRecipes(mongoUri: string) {
+    try {
+        console.log('Connecting to MongoDB...');
+        await mongoose.connect(mongoUri);
+        console.log('✓ Connected to MongoDB');
 
-//         const ingredientModel = mongoose.model('Ingredient', IngredientSchema, 'ingredients');
-//         const recipeModel = mongoose.model('Recipe', RecipeSchema, 'recipes');
+        const foodsModel = mongoose.model('Food', FoodSchema, 'foods');
+        const measuresModel = mongoose.model('Measure', MeasureSchema, 'measures');
+        const recipeModel = mongoose.model('Recipe', RecipeSchema, 'recipes');
+        const recipeFoodsModel = mongoose.model('RecipeFood', RecipeFoodSchema, 'recipeFoods');
 
-//         console.log('Clearing existing recipes...');
-//         await recipeModel.deleteMany({});
-//         console.log('✓ Cleared existing recipes');
+        console.log('Clearing existing recipes and recipesFoods');
+        await recipeModel.deleteMany({});
+        await recipeFoodsModel.deleteMany({});
+        console.log('✓ Cleared existing data');
 
-//         console.log('Resolving ingredient names to ObjectIds...');
-//         const processedRecipes = await Promise.all(
-//             seedRecipes.map(async (recipeData) => {
-//                 const processedIngredients = await Promise.all(
-//                     recipeData.ingredients.map(async (ing) => {
-//                         const ingredientDoc = await ingredientModel.findOne({ name: ing.ingredient }).exec();
-//                         if (!ingredientDoc) {
-//                             throw new Error(`Ingredient not found: ${ing.ingredient}`);
-//                         }
-//                         return {
-//                             ingredient: ingredientDoc._id,
-//                             quantity: ing.quantity,
-//                             unit: ing.unit,
-//                         };
-//                     })
-//                 );
+        console.log('Inserting seed data...');
+        const result = await Promise.all(
+            seedRecipes.map(async (recipeData) => {
+                const createRecipeDTO = {
+                    name: recipeData.name,
+                    instructions: recipeData.instructions,
+                    vegetarian: recipeData.vegetarian,
+                    season: recipeData.season,
+                    category: recipeData.category as RecipeCategory,
+                    servings: recipeData.servings,
+                };
 
-//                 return {
-//                     ...recipeData,
-//                     ingredients: processedIngredients,
-//                 };
-//             })
-//         );
+                const recipe = await recipeModel.create(createRecipeDTO);
 
-//         console.log('Inserting processed recipes...');
-//         const result = await recipeModel.insertMany(processedRecipes);
-//         console.log(`✓ Successfully inserted ${result.length} recipes`);
+                for (const ingredient of recipeData.ingredients) {
+                    const foodDoc = await foodsModel.findOne({ name: ingredient.ingredient }).exec();
+                    if (!foodDoc) {
+                        throw new Error(`Food not found: ${ingredient.ingredient}`);
+                    }
+                    const measureDoc = await measuresModel.findOne({ foodId: foodDoc.id, label: ingredient.unit }).exec();
+                    if (!measureDoc) {
+                        throw new Error(`Measure not found: ${foodDoc.name} (id ${foodDoc.id}), Unit: ${ingredient.unit} from recipe: ${recipe.name}`);
+                    }
 
-//         console.log('\nRecipes seeding completed successfully!');
-//     } catch (error) {
-//         console.error('Error seeding recipes:', error);
-//         throw error;
-//     } finally {
-//         await mongoose.disconnect();
-//         console.log('Disconnected from MongoDB');
-//     }
-// }
+                    const createRecipeFoodDTO = {
+                        recipeId: recipe._id,
+                        foodId: foodDoc._id,
+                        measureId: measureDoc._id,
+                        quantity: ingredient.quantity,
+                    };
 
-// if (require.main === module) {
-//     seedDbRecipes();
-// }
+                    await recipeFoodsModel.create(createRecipeFoodDTO);
+                }
+            })
+        );
+
+        const countRecipeFoods = await recipeFoodsModel.countDocuments().exec();
+
+        console.log(`✓ Inserted ${countRecipeFoods} recipe ingredients`);
+        console.log(`✓ Inserted ${result.length} recipes`);
+        console.log('\nRecipes seeding completed successfully!');
+    } catch (error) {
+        console.error('Error seeding recipes:', error);
+        throw error;
+    } finally {
+        await mongoose.disconnect();
+        console.log('Disconnected from MongoDB');
+    }
+}
