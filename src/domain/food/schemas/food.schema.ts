@@ -15,6 +15,9 @@ export class Food {
 
     @Prop({ type: Nutrients, required: true })
     nutrientsPer100: Nutrients;
+
+    @Prop({ required: true, default: false })
+    needReview: boolean;
 }
 
 export type FoodDocument = Food & Document;

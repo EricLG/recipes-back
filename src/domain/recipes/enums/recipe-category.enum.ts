@@ -1,4 +1,5 @@
 export enum RecipeCategory {
+  BREAKFAST = 'breakfast',
   STARTER = 'starter',
   MAIN = 'main',
   SIDE = 'side',

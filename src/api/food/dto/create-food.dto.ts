@@ -1,4 +1,4 @@
-import { IsString, IsNumber, ValidateNested } from 'class-validator';
+import { IsString, IsNumber, ValidateNested, IsBoolean } from 'class-validator';
 import { Type } from 'class-transformer';
 import { NutrientsDto } from './nutrients.dto';
 
@@ -15,4 +15,7 @@ export class CreateFoodDto {
   @ValidateNested()
   @Type(() => NutrientsDto)
   nutrientsPer100: NutrientsDto;
+
+  @IsBoolean()
+  needReview: boolean;
 }
