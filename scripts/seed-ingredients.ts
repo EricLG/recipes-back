@@ -1,4 +1,14 @@
-import { Ingredient } from '../src/api/ingredients/schemas/ingredient.schema';
+interface Ingredient {
+    name: string;
+    kiloCalories: number;
+    proteins: number;
+    fats: number;
+    carbohydrates: number;
+    totalSugars: number;
+    fibers: number;
+    needReview?: boolean;
+
+}
 
 export const seedIngredients: Ingredient[] = [
     {
