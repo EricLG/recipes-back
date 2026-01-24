@@ -19,6 +19,9 @@ export class Food {
 
     @Prop({ required: true, default: false })
         needReview: boolean;
+
+    @Prop({ required: true })
+        category: string;
 }
 
 export type FoodDocument = Food & Document;

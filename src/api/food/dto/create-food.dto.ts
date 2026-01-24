@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsString, IsNumber, ValidateNested, IsBoolean } from 'class-validator';
+import { IsString, IsNumber, ValidateNested, IsBoolean, IsOptional } from 'class-validator';
 
 import { NutrientsDto } from './nutrients.dto';
 
@@ -19,4 +19,8 @@ export class CreateFoodDto {
 
   @IsBoolean()
       needReview: boolean;
+
+  @IsString()
+  @IsOptional()
+      category: string;
 }
