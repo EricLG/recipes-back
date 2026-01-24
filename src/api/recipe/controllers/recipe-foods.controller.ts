@@ -1,5 +1,4 @@
-import { ResponseRecipeFoodDto } from './../dto/response-recipe-food.dto';
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { RecipeFoodsService } from '../services/recipe-foods.service';
 import { CreateRecipeFoodDto } from '../dto/create-recipe-food.dto';
 import { UpdateRecipeFoodDto } from '../dto/update-recipe-food.dto';
@@ -24,7 +23,7 @@ export class RecipeFoodsController {
         return this.recipeFoodsService.findOne(id);
     }
 
-    @Patch(':id')
+    @Put(':id')
     async update(@Param('id') id: string, @Body() updateRecipeFoodDto: UpdateRecipeFoodDto): Promise<RecipeFood> {
         return this.recipeFoodsService.update(id, updateRecipeFoodDto);
     }
