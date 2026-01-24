@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
 import { RecipeFood } from './../../../domain/recipes/schemas/recipe-food.schema';
 import { CreateRecipeFoodDto } from './../dto/create-recipe-food.dto';
+import { PopulatedRecipeFood } from './../dto/response-recipe-food.dto';
 import { UpdateRecipeFoodDto } from './../dto/update-recipe-food.dto';
 import { RecipeFoodsService } from './../services/recipe-foods.service';
 
@@ -35,7 +36,7 @@ export class RecipeFoodsController {
     }
 
     @Get('by-recipe/:recipeId')
-    async findByRecipeId(@Param('recipeId') recipeId: string): Promise<RecipeFood[]> {
+    async findByRecipeId(@Param('recipeId') recipeId: string): Promise<PopulatedRecipeFood[]> {
         return this.recipeFoodsService.findByRecipeId(recipeId);
     }
 }

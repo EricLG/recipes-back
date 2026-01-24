@@ -1,28 +1,23 @@
-import { RecipeFoodDocument } from './../../../domain/recipes/schemas/recipe-food.schema';
+import { Types } from 'mongoose';
 
-export class ResponseRecipeFoodDto {
-    recipeId: string;
-    foodId: {
-        id: string;
-        name: string;
-        referenceUnit: string;
-        density: number;
-        nutrientsPer100: {
-            calories: number;
-            protein: number;
-            carbs: number;
-            fat: number;
-        };
-        needReview: boolean;
-    };
-    measureId: {
-        label: string;
-        grams: number;
-        isDefault: boolean;
-    };
+import { Food } from './../../../domain/food/schemas/food.schema';
+import { Measure } from './../../../domain/food/schemas/measure.schema';
+import { RecipeCategory } from './../../../domain/recipes/enums/recipe-category.enum';
+import { RecipeSeason } from './../../../domain/recipes/enums/recipe-season.enum';
+
+export interface PopulatedRecipeFood {
+    recipeId: Types.ObjectId;
+    measureId: Measure & { foodId: Food };
     quantity: number;
+}
 
-    constructor(docs: RecipeFoodDocument) {
-        Object.assign(this, docs);
-    }
+export interface DetailedRecipeDto {
+    id: string;
+    name: string;
+    instructions: string;
+    vegetarian?: boolean;
+    season?: RecipeSeason;
+    category: RecipeCategory;
+    servings: number;
+    measures:  PopulatedRecipeFood[];
 }

@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 import { RecipeFood, RecipeFoodDocument } from './../../../domain/recipes/schemas/recipe-food.schema';
 import { CreateRecipeFoodDto } from './../dto/create-recipe-food.dto';
+import { PopulatedRecipeFood } from './../dto/response-recipe-food.dto';
 import { UpdateRecipeFoodDto } from './../dto/update-recipe-food.dto';
 
 @Injectable()
@@ -18,11 +19,7 @@ export class RecipeFoodsService {
     }
 
     async findAll(): Promise<RecipeFood[]> {
-        return this.recipeFoodModel.find()
-            .populate('recipeId')
-            .populate('foodId')
-            .populate('measureId')
-            .exec();
+        return this.recipeFoodModel.find().exec();
     }
 
     async findOne(id: string): Promise<RecipeFood> {
@@ -54,11 +51,14 @@ export class RecipeFoodsService {
         }
     }
 
-    async findByRecipeId(recipeId: string): Promise<RecipeFood[]> {
-        return this.recipeFoodModel.find({ recipeId })
-            // .populate('recipeId')
-            .populate('foodId')
-            .populate('measureId')
-            .exec();
+    async findByRecipeId(recipeId: string): Promise<PopulatedRecipeFood[]> {
+        return await this.recipeFoodModel.find({ recipeId: new Types.ObjectId(recipeId) })
+            .populate({
+                path: 'measureId',
+                populate: {
+                    path: 'foodId'
+                }
+            })
+            .exec() as unknown as PopulatedRecipeFood[];
     }
 }
