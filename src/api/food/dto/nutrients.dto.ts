@@ -2,23 +2,23 @@ import { IsNumber } from 'class-validator';
 
 export class NutrientsDto {
   @IsNumber()
-  energyKcal: number;
+      energyKcal: number;
 
   @IsNumber()
-  proteins: number;
+      proteins: number;
 
   @IsNumber()
-  fats: number;
+      fats: number;
 
   @IsNumber()
-  carbohydrates: number;
+      carbohydrates: number;
 
   @IsNumber()
-  sugars: number;
+      sugars: number;
 
   @IsNumber()
-  fibers: number;
+      fibers: number;
 
   @IsNumber()
-  salt: number;
+      salt: number;
 }

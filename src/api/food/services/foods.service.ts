@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Food, FoodDocument } from '../../../domain/food/schemas/food.schema';
-import { CreateFoodDto } from '../dto/create-food.dto';
-import { UpdateFoodDto } from '../dto/update-food.dto';
+
+import { Food, FoodDocument } from './../../../domain/food/schemas/food.schema';
+import { CreateFoodDto } from './../dto/create-food.dto';
+import { UpdateFoodDto } from './../dto/update-food.dto';
 
 @Injectable()
 export class FoodsService {

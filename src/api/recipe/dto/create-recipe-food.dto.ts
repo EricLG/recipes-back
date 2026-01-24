@@ -2,14 +2,14 @@ import { IsString, IsNumber } from 'class-validator';
 
 export class CreateRecipeFoodDto {
   @IsString()
-  recipeId: string;
+      recipeId: string;
 
   @IsString()
-  foodId: string;
+      foodId: string;
 
   @IsString()
-  measureId: string;
+      measureId: string;
 
   @IsNumber()
-  quantity: number;
+      quantity: number;
 }

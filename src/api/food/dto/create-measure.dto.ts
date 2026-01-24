@@ -2,15 +2,15 @@ import { IsString, IsNumber, IsBoolean, IsOptional } from 'class-validator';
 
 export class CreateMeasureDto {
   @IsString()
-  foodId: string;
+      foodId: string;
 
   @IsString()
-  label: string;
+      label: string;
 
   @IsNumber()
-  grams: number;
+      grams: number;
 
   @IsBoolean()
   @IsOptional()
-  isDefault?: boolean;
+      isDefault?: boolean;
 }

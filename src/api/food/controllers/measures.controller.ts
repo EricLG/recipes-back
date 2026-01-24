@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
-import { MeasuresService } from '../services/measures.service';
-import { CreateMeasureDto } from '../dto/create-measure.dto';
-import { UpdateMeasureDto } from '../dto/update-measure.dto';
-import { Measure } from '../../../domain/food/schemas/measure.schema';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+
+import { Measure } from './../../../domain/food/schemas/measure.schema';
+import { CreateMeasureDto } from './../dto/create-measure.dto';
+import { UpdateMeasureDto } from './../dto/update-measure.dto';
+import { MeasuresService } from './../services/measures.service';
 
 @Controller('measures')
 export class MeasuresController {

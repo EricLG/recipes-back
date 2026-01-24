@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Measure, MeasureDocument } from '../../../domain/food/schemas/measure.schema';
-import { CreateMeasureDto } from '../dto/create-measure.dto';
-import { UpdateMeasureDto } from '../dto/update-measure.dto';
+
+import { Measure, MeasureDocument } from './../../../domain/food/schemas/measure.schema';
+import { CreateMeasureDto } from './../dto/create-measure.dto';
+import { UpdateMeasureDto } from './../dto/update-measure.dto';
 
 @Injectable()
 export class MeasuresService {

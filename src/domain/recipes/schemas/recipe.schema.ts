@@ -1,37 +1,37 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-import { RecipeSeason } from '../enums/recipe-season.enum';
-import { RecipeCategory } from '../enums/recipe-category.enum';
+import { RecipeCategory } from './../enums/recipe-category.enum';
+import { RecipeSeason } from './../enums/recipe-season.enum';
 
 @Schema({ collection: 'recipes', timestamps: true })
 export class Recipe {
 
   @Prop({ required: true })
-  name: string;
+      name: string;
 
   @Prop({ required: true })
-  instructions: string;
+      instructions: string;
 
   @Prop({ required: true, default: false })
-  vegetarian: boolean;
+      vegetarian: boolean;
 
   @Prop({
-    type: String,
-    enum: RecipeSeason,
-    default: RecipeSeason.ALL_YEAR
+      type: String,
+      enum: RecipeSeason,
+      default: RecipeSeason.ALL_YEAR
   })
-  season: RecipeSeason;
+      season: RecipeSeason;
 
   @Prop({
-    type: String,
-    enum: RecipeCategory,
-    required: true
+      type: String,
+      enum: RecipeCategory,
+      required: true
   })
-  category: RecipeCategory;
+      category: RecipeCategory;
 
   @Prop({ required: true, min: 1 })
-  servings: number;
+      servings: number;
 }
 
 export type RecipeDocument = Recipe & Document;

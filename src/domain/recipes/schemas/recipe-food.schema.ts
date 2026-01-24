@@ -4,16 +4,16 @@ import { Document, Types } from 'mongoose';
 @Schema({ collection: 'recipeFoods', timestamps: true })
 export class RecipeFood {
     @Prop({ type: Types.ObjectId, ref: 'Recipe', required: true })
-    recipeId: Types.ObjectId;
+        recipeId: Types.ObjectId;
 
     @Prop({ type: Types.ObjectId, ref: 'Food', required: true })
-    foodId: Types.ObjectId;
+        foodId: Types.ObjectId;
 
     @Prop({ type: Types.ObjectId, ref: 'Measure', required: true })
-    measureId: Types.ObjectId;
+        measureId: Types.ObjectId;
 
     @Prop({ required: true })
-    quantity: number;
+        quantity: number;
 }
 
 export type RecipeFoodDocument = RecipeFood & Document;

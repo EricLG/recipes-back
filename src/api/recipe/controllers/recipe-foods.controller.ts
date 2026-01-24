@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
-import { RecipeFoodsService } from '../services/recipe-foods.service';
-import { CreateRecipeFoodDto } from '../dto/create-recipe-food.dto';
-import { UpdateRecipeFoodDto } from '../dto/update-recipe-food.dto';
-import { RecipeFood } from '../../../domain/recipes/schemas/recipe-food.schema';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+
+import { RecipeFood } from './../../../domain/recipes/schemas/recipe-food.schema';
+import { CreateRecipeFoodDto } from './../dto/create-recipe-food.dto';
+import { UpdateRecipeFoodDto } from './../dto/update-recipe-food.dto';
+import { RecipeFoodsService } from './../services/recipe-foods.service';
 
 @Controller('recipe-foods')
 export class RecipeFoodsController {

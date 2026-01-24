@@ -2,23 +2,23 @@ import { Prop } from '@nestjs/mongoose';
 
 export class Nutrients {
     @Prop({ required: true })
-    energyKcal: number;
+        energyKcal: number;
 
     @Prop({ required: true })
-    proteins: number;
+        proteins: number;
 
     @Prop({ required: true })
-    fats: number;
+        fats: number;
 
     @Prop({ required: true })
-    carbohydrates: number;
+        carbohydrates: number;
 
     @Prop({ required: true })
-    sugars: number;
+        sugars: number;
 
     @Prop({ required: true })
-    fibers: number;
+        fibers: number;
 
     @Prop({ required: true })
-    salt: number;
+        salt: number;
 }

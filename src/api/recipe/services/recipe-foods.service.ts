@@ -1,10 +1,10 @@
-import { ResponseRecipeFoodDto } from './../dto/response-recipe-food.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RecipeFood, RecipeFoodDocument } from '../../../domain/recipes/schemas/recipe-food.schema';
-import { CreateRecipeFoodDto } from '../dto/create-recipe-food.dto';
-import { UpdateRecipeFoodDto } from '../dto/update-recipe-food.dto';
+
+import { RecipeFood, RecipeFoodDocument } from './../../../domain/recipes/schemas/recipe-food.schema';
+import { CreateRecipeFoodDto } from './../dto/create-recipe-food.dto';
+import { UpdateRecipeFoodDto } from './../dto/update-recipe-food.dto';
 
 @Injectable()
 export class RecipeFoodsService {
@@ -39,8 +39,8 @@ export class RecipeFoodsService {
 
     async update(id: string, updateRecipeFoodDto: UpdateRecipeFoodDto): Promise<RecipeFood> {
         const updatedRecipeFood = await this.recipeFoodModel
-        .findByIdAndUpdate(id, updateRecipeFoodDto, { new: true })
-        .exec();
+            .findByIdAndUpdate(id, updateRecipeFoodDto, { new: true })
+            .exec();
         if (!updatedRecipeFood) {
             throw new NotFoundException(`RecipeFood with ID ${id} not found`);
         }
