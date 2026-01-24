@@ -43,7 +43,7 @@ export async function seedDbFoods(mongoUri: string) {
 function convertToCreateMeasureDto(ingredients: Ingredient[], foods: FoodDocument[]): CreateMeasureDto[] {
     return ingredients.map((ing) => {
         const foodIng = foods.find((f) => f.name === ing.ingredient);
-        const grams  = unitToGramsMap[ing.unit] ? unitToGramsMap[ing.unit] : 10;
+        const grams  = unitToGramsMap[ing.unit] ? unitToGramsMap[ing.unit] : 1;
 
         if (!foodIng) {
             console.warn(`Warning: Food not found for ingredient "${ing.ingredient}". Using placeholder ID.`);

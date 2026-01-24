@@ -46,7 +46,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: "flocons d'avoine",
+                ingredient: "Flocons d'avoine",
                 quantity: 30,
                 unit: 'g'
             },
@@ -121,7 +121,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'dosette'
             },
             {
-                ingredient: "flocons d'avoine",
+                ingredient: "Flocons d'avoine",
                 quantity: 30,
                 unit: 'g'
             },
@@ -216,7 +216,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 10,
                 unit: 'ml'
             },
@@ -251,7 +251,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'pièce'
             },
             {
-                ingredient: "flocons d'avoine",
+                ingredient: "Flocons d'avoine",
                 quantity: 45,
                 unit: 'g'
             },
@@ -311,7 +311,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 15,
                 unit: 'ml'
             },
@@ -421,7 +421,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 1, // huile, quantité variable
                 unit: 'ml'
             },
@@ -455,7 +455,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'crème liquide entière U bio',
+                ingredient: 'Crème liquide entière U bio',
                 quantity: 100,
                 unit: 'ml'
             },
@@ -509,7 +509,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: "flocons d'avoine",
+                ingredient: "Flocons d'avoine",
                 quantity: 100,
                 unit: 'g'
             },
@@ -529,7 +529,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 25,
                 unit: 'g'
             }
@@ -573,7 +573,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'pièce'
             },
             {
-                ingredient: "flocons d'avoine",
+                ingredient: "Flocons d'avoine",
                 quantity: 100,
                 unit: 'g'
             },
@@ -593,7 +593,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 25,
                 unit: 'g'
             }
@@ -632,12 +632,12 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'crème liquide entière U bio',
+                ingredient: 'Crème liquide entière U bio',
                 quantity: 100,
                 unit: 'ml'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 1,
                 unit: 'ml'
             },
@@ -676,7 +676,7 @@ export const seedRecipes: SeedRecipe[] = [
         name: 'DAHL DE LENTILLES CORAILS',
         ingredients: [
             {
-                ingredient: 'lentilles corails',
+                ingredient: 'Lentilles corails',
                 quantity: 150,
                 unit: 'g'
             },
@@ -701,7 +701,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 1,
                 unit: 'ml'
             },
@@ -794,7 +794,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 1,
                 unit: 'ml'
             },
@@ -804,7 +804,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'graines de lin',
+                ingredient: 'Graines de lin',
                 quantity: 20,
                 unit: 'g'
             },
@@ -848,7 +848,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'crème liquide entière U bio',
+                ingredient: 'Crème liquide entière U bio',
                 quantity: 100,
                 unit: 'ml'
             },
@@ -1059,17 +1059,17 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'blé Ebly portion 65 gr sec',
+                ingredient: 'Blé Ebly portion 65 gr sec',
                 quantity: 125,
                 unit: 'g'
             },
             {
-                ingredient: 'lentilles corails',
+                ingredient: 'Lentilles corails',
                 quantity: 100,
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 1,
                 unit: 'ml'
             }
@@ -1108,7 +1108,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'pièce'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 1,
                 unit: 'ml'
             },
@@ -1182,7 +1182,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 15,
                 unit: 'ml'
             },
@@ -1246,7 +1246,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 15,
                 unit: 'ml'
             },
@@ -1379,7 +1379,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'ml'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 30,
                 unit: 'ml'
             },
@@ -1497,7 +1497,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 10,
                 unit: 'ml'
             },
@@ -1963,7 +1963,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 1,
                 unit: 'ml'
             },
@@ -2091,7 +2091,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'ml'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 30,
                 unit: 'ml'
             },
@@ -2145,7 +2145,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 1,
                 unit: 'ml'
             },
@@ -2253,7 +2253,7 @@ export const seedRecipes: SeedRecipe[] = [
                 unit: 'g'
             },
             {
-                ingredient: 'huile de tournesol',
+                ingredient: 'Huile de tournesol',
                 quantity: 30,
                 unit: 'ml'
             },

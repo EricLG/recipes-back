@@ -107,7 +107,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'blé Ebly portion 65 gr sec',
+        name: 'Blé Ebly portion 65 gr sec',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -392,7 +392,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'crème liquide entière U bio',
+        name: 'Crème liquide entière U bio',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -557,7 +557,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: "flocons d'avoine",
+        name: "Flocons d'avoine",
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -647,7 +647,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'graines de courge',
+        name: 'Graines de courge',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -662,7 +662,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'graines de lin',
+        name: 'Graines de lin',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -677,7 +677,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'graines de pavot',
+        name: 'Graines de pavot',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -692,7 +692,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'graines de sésame',
+        name: 'Graines de sésame',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -767,7 +767,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'huile de tournesol',
+        name: 'Huile de tournesol',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -857,7 +857,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'lardons végétaux LA VIE (150g)',
+        name: 'Lardons végétaux LA VIE (150g)',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -887,7 +887,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'lentilles corails',
+        name: 'Lentilles corails',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
@@ -1802,7 +1802,7 @@ export const seedFoods: CreateFoodDto[] = [
         needReview: false,
     },
     {
-        name: 'cordon Bleu poulet père dodu',
+        name: 'Cordon Bleu poulet père dodu',
         referenceUnit: 'g',
         density: 1,
         nutrientsPer100: {
