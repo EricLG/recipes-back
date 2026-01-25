@@ -4,14 +4,14 @@ import { Recipe } from './../../../domain/recipe/schemas/recipe.schema';
 import { CreateRecipeDto } from './../dto/create-recipe.dto';
 import { DetailedRecipeDto } from './../dto/response-recipe-food.dto';
 import { UpdateRecipeDto } from './../dto/update-recipe.dto';
-import { RecipeFoodsService } from './../services/recipe-foods.service';
+import { DetailedRecipeByAggregationDto, RecipeQueryService } from './../services/recipe-query.service';
 import { RecipesService } from './../services/recipes.service';
 
 @Controller('recipes')
 export class RecipesController {
     constructor(
         private readonly svcRecipes: RecipesService,
-        private readonly svcRecipeFoods: RecipeFoodsService
+        private readonly svcRecipeQuery: RecipeQueryService,
     ) {}
 
     @Post()
@@ -29,6 +29,17 @@ export class RecipesController {
         return this.svcRecipes.findOne(id);
     }
 
+    @Get('detail/:id')
+    async findDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeDto> {
+        return await this.svcRecipes.findDetailedRecipe(id);
+    }
+
+    // For reference only - use aggregation
+    @Get(':id/detail')
+    async getDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeByAggregationDto> {
+        return await this.svcRecipeQuery.getDetailedRecipe(id);
+    }
+
     @Put(':id')
     async update(@Param('id') id: string, @Body() updateRecipeDto: UpdateRecipeDto): Promise<Recipe> {
         return this.svcRecipes.update(id, updateRecipeDto);
@@ -39,20 +50,4 @@ export class RecipesController {
         return this.svcRecipes.remove(id);
     }
 
-    @Get('detail/:id')
-    async findDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeDto> {
-        const recipe = await this.svcRecipes.findOne(id);
-        const recipefoods = await this.svcRecipeFoods.findByRecipeId(id);
-
-        return {
-            id,
-            name: recipe.name,
-            instructions: recipe.instructions,
-            vegetarian: recipe.vegetarian,
-            season: recipe.season,
-            category: recipe.category,
-            servings: recipe.servings,
-            measures: recipefoods
-        };;
-    }
 }

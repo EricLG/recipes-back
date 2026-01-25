@@ -14,7 +14,14 @@ export class RecipeFoodsService {
     ) {}
 
     async create(createRecipeFoodDto: CreateRecipeFoodDto): Promise<RecipeFood> {
-        const createdRecipeFood = new this.recipeFoodModel(createRecipeFoodDto);
+        // Convert string IDs to ObjectId
+        const dtoWithObjectIds = {
+            ...createRecipeFoodDto,
+            recipeId: new Types.ObjectId(createRecipeFoodDto.recipeId),
+            measureId: new Types.ObjectId(createRecipeFoodDto.measureId),
+        };
+
+        const createdRecipeFood = new this.recipeFoodModel(dtoWithObjectIds);
         return createdRecipeFood.save();
     }
 
@@ -35,8 +42,17 @@ export class RecipeFoodsService {
     }
 
     async update(id: string, updateRecipeFoodDto: UpdateRecipeFoodDto): Promise<RecipeFood> {
+        // Convert string IDs to ObjectId if present
+        const updateData: any = { ...updateRecipeFoodDto };
+        if (updateRecipeFoodDto.recipeId) {
+            updateData.recipeId = new Types.ObjectId(updateRecipeFoodDto.recipeId);
+        }
+        if (updateRecipeFoodDto.measureId) {
+            updateData.measureId = new Types.ObjectId(updateRecipeFoodDto.measureId);
+        }
+
         const updatedRecipeFood = await this.recipeFoodModel
-            .findByIdAndUpdate(id, updateRecipeFoodDto, { new: true })
+            .findByIdAndUpdate(id, updateData, { new: true })
             .exec();
         if (!updatedRecipeFood) {
             throw new NotFoundException(`RecipeFood with ID ${id} not found`);
