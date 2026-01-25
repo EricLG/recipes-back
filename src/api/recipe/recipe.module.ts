@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { RecipeFood, RecipeFoodSchema } from './../../domain/recipes/schemas/recipe-food.schema';
-import { Recipe, RecipeSchema } from './../../domain/recipes/schemas/recipe.schema';
+import { RecipeFood, RecipeFoodSchema } from './../../domain/recipe/schemas/recipe-food.schema';
+import { Recipe, RecipeSchema } from './../../domain/recipe/schemas/recipe.schema';
 import { RecipeFoodsController } from './controllers/recipe-foods.controller';
 import { RecipesController } from './controllers/recipes.controller';
 import { RecipeFoodsService } from './services/recipe-foods.service';

@@ -6,13 +6,16 @@ The Recipe domain depends on the Food domain.
 ## MongoDB Collections
 - recipes
 - recipeFoods
+- RecipeSubRecipe
 
 ## Rules
 - Recipes never store nutritional values
-- RecipeFood is a pivot collection
-- RecipeFood references Food and Measure
+- RecipeFood is a pivot collection between Recipe and Food
+- RecipeSubRecipe allows a recipe to reference another recipe
+- Sub-recipes are full recipes with their own ingredients and instructions
 - Recipe domain depends on Food domain
 - Food domain must never depend on Recipe domain
+- Cycles between recipes must be prevented (no recursive loops)
 
 ```mermaid
 classDiagram
@@ -34,4 +37,13 @@ classDiagram
         number quantity
     }
 
-    Recipe "1" --> "many" RecipeFood : contains
+    class RecipeSubRecipe {
+        ObjectId _id
+        ObjectId parentRecipeId
+        ObjectId childRecipeId
+        number quantity
+    }
+
+    Recipe "1" --> "many" RecipeFood : contains foods
+    Recipe "1" --> "many" RecipeSubRecipe : contains sub-recipes
+    RecipeSubRecipe --> Recipe : references

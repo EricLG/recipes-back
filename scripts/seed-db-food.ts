@@ -1,8 +1,8 @@
-import { CreateMeasureDto } from './../src/api/food/dto/create-measure.dto';
-import { MeasureSchema } from './../src/domain/food/schemas/measure.schema';
-import { FoodDocument, FoodSchema } from './../src/domain/food/schemas/food.schema';
 import * as mongoose from 'mongoose';
 
+import { CreateMeasureDto } from './../src/api/food/dto/create-measure.dto';
+import { FoodDocument, FoodSchema } from './../src/domain/food/schemas/food.schema';
+import { MeasureSchema } from './../src/domain/food/schemas/measure.schema';
 import { seedFoods } from './seed-food';
 import { seedRecipes, Ingredient } from './seed-measure';
 

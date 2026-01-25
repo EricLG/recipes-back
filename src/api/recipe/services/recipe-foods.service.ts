@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
-import { RecipeFood, RecipeFoodDocument } from './../../../domain/recipes/schemas/recipe-food.schema';
+import { RecipeFood, RecipeFoodDocument } from './../../../domain/recipe/schemas/recipe-food.schema';
 import { CreateRecipeFoodDto } from './../dto/create-recipe-food.dto';
 import { PopulatedRecipeFood } from './../dto/response-recipe-food.dto';
 import { UpdateRecipeFoodDto } from './../dto/update-recipe-food.dto';

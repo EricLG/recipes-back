@@ -1,11 +1,11 @@
 import * as mongoose from 'mongoose';
 
-import { MeasureSchema } from './../src/domain/food/schemas/measure.schema';
 import { FoodSchema } from './../src/domain/food/schemas/food.schema';
-import { RecipeCategory } from './../src/domain/recipes/enums/recipe-category.enum';
+import { MeasureSchema } from './../src/domain/food/schemas/measure.schema';
+import { RecipeCategory } from './../src/domain/recipe/enums/recipe-category.enum';
+import { RecipeFoodSchema } from './../src/domain/recipe/schemas/recipe-food.schema';
+import { RecipeSchema } from './../src/domain/recipe/schemas/recipe.schema';
 import { seedRecipes } from './seed-recipes';
-import { RecipeSchema } from './../src/domain/recipes/schemas/recipe.schema';
-import { RecipeFoodSchema } from './../src/domain/recipes/schemas/recipe-food.schema';
 
 export async function seedDbRecipes(mongoUri: string) {
     try {

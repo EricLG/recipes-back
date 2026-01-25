@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
-import { Recipe } from './../../../domain/recipes/schemas/recipe.schema';
+import { Recipe } from './../../../domain/recipe/schemas/recipe.schema';
 import { CreateRecipeDto } from './../dto/create-recipe.dto';
 import { DetailedRecipeDto } from './../dto/response-recipe-food.dto';
 import { UpdateRecipeDto } from './../dto/update-recipe.dto';
