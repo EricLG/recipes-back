@@ -42,9 +42,9 @@ export async function seedDbRecipes(mongoUri: string) {
                     if (!foodDoc) {
                         throw new Error(`Food not found: ${ingredient.ingredient}`);
                     }
-                    const measureDoc = await measuresModel.findOne({ foodId: foodDoc.id, label: ingredient.unit }).exec();
+                    const measureDoc = await measuresModel.findOne({ foodId: foodDoc._id, label: ingredient.unit }).exec();
                     if (!measureDoc) {
-                        throw new Error(`Measure not found: ${foodDoc.name} (id ${foodDoc.id}), Unit: ${ingredient.unit} from recipe: ${recipe.name}`);
+                        throw new Error(`Measure not found: ${foodDoc.name} (id ${foodDoc._id.toString()}), Unit: ${ingredient.unit} from recipe: ${recipe.name}`);
                     }
 
                     const createRecipeFoodDTO = {

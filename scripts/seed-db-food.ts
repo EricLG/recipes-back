@@ -50,7 +50,7 @@ function convertToCreateMeasureDto(ingredients: Ingredient[], foods: FoodDocumen
         }
 
         return {
-            foodId: foodIng?.id as string || 'unknown food',
+            foodId: foodIng?._id || 'unknown food',
             label: ing.unit,
             grams,
         } as CreateMeasureDto
