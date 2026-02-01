@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
 import { Recipe } from './../../../domain/recipe/schemas/recipe.schema';
 import { CreateRecipeDto } from './../dto/create-recipe.dto';
+import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from './../dto/recipe-with-relations.dto';
 import { DetailedRecipeDto } from './../dto/response-recipe-food.dto';
 import { UpdateRecipeDto } from './../dto/update-recipe.dto';
 import { DetailedRecipeByAggregationDto, RecipeQueryService } from './../services/recipe-query.service';
@@ -24,25 +25,34 @@ export class RecipesController {
         return this.svcRecipes.findAll();
     }
 
+    @Get(':id/detail')
+    async findDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeDto> {
+        return await this.svcRecipes.findDetailedRecipe(id);
+    }
+
+    @Get(':id/aggregation')
+    async getDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeByAggregationDto> {
+        return await this.svcRecipeQuery.getDetailedRecipe(id);
+    }
+
     @Get(':id')
     async findOne(@Param('id') id: string): Promise<Recipe> {
         return this.svcRecipes.findOne(id);
     }
 
-    @Get('detail/:id')
-    async findDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeDto> {
-        return await this.svcRecipes.findDetailedRecipe(id);
-    }
-
-    // For reference only - use aggregation
-    @Get(':id/detail')
-    async getDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeByAggregationDto> {
-        return await this.svcRecipeQuery.getDetailedRecipe(id);
+    @Post('with-relations')
+    async createWithRelations(@Body() dto: CreateRecipeWithRelationsDto): Promise<DetailedRecipeDto> {
+        return this.svcRecipes.createWithRelations(dto);
     }
 
     @Put(':id')
     async update(@Param('id') id: string, @Body() updateRecipeDto: UpdateRecipeDto): Promise<Recipe> {
         return this.svcRecipes.update(id, updateRecipeDto);
+    }
+
+    @Put(':id/with-relations')
+    async updateWithRelations(@Param('id') id: string, @Body() dto: UpdateRecipeWithRelationsDto): Promise<DetailedRecipeDto> {
+        return this.svcRecipes.updateWithRelations(id, dto);
     }
 
     @Delete(':id')

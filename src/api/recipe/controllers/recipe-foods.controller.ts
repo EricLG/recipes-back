@@ -20,6 +20,11 @@ export class RecipeFoodsController {
         return this.recipeFoodsService.findAll();
     }
 
+    @Get('recipe/:recipeId')
+    async findByRecipeId(@Param('recipeId') recipeId: string): Promise<PopulatedRecipeFood[]> {
+        return this.recipeFoodsService.findByRecipeId(recipeId);
+    }
+
     @Get(':id')
     async findOne(@Param('id') id: string): Promise<RecipeFood> {
         return this.recipeFoodsService.findOne(id);
@@ -33,10 +38,5 @@ export class RecipeFoodsController {
     @Delete(':id')
     async remove(@Param('id') id: string): Promise<void> {
         return this.recipeFoodsService.remove(id);
-    }
-
-    @Get('by-recipe/:recipeId')
-    async findByRecipeId(@Param('recipeId') recipeId: string): Promise<PopulatedRecipeFood[]> {
-        return this.recipeFoodsService.findByRecipeId(recipeId);
     }
 }

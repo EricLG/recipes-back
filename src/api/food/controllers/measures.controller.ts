@@ -19,6 +19,11 @@ export class MeasuresController {
         return this.measuresService.findAll();
     }
 
+    @Get('foods/:foodId')
+    async findAllByFoodId(@Param('foodId') foodId: string): Promise<Measure[]> {
+        return this.measuresService.findAllByFoodId(foodId);
+    }
+
     @Get(':id')
     async findOne(@Param('id') id: string): Promise<Measure> {
         return this.measuresService.findOne(id);
@@ -32,10 +37,5 @@ export class MeasuresController {
     @Delete(':id')
     async remove(@Param('id') id: string): Promise<void> {
         return this.measuresService.remove(id);
-    }
-
-    @Get('foods/:foodId')
-    async findAllByFoodId(@Param('foodId') foodId: string): Promise<Measure[]> {
-        return this.measuresService.findAllByFoodId(foodId);
     }
 }

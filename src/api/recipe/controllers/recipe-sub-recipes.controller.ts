@@ -19,6 +19,11 @@ export class RecipeSubRecipesController {
       return this.service.findAll();
   }
 
+  @Get('parent/:parentRecipeId')
+  async findByParentRecipeId(@Param('parentRecipeId') parentRecipeId: string): Promise<RecipeSubRecipe[]> {
+      return await this.service.findAllByParentRecipeId(parentRecipeId);
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<RecipeSubRecipe> {
       return this.service.findOne(id);

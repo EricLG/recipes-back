@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
@@ -11,6 +11,8 @@ import { UpdateRecipeSubRecipeDto } from '../dto/update-recipe-sub-recipe.dto';
 
 @Injectable()
 export class RecipeSubRecipesService {
+    private readonly logger = new Logger(RecipeSubRecipesService.name);
+
     constructor(
     @InjectModel(RecipeSubRecipe.name) private recipeSubRecipeModel: Model<RecipeSubRecipeDocument>,
     @InjectModel(Recipe.name) private recipeModel: Model<Recipe>,
@@ -46,7 +48,9 @@ export class RecipeSubRecipesService {
         };
 
         const created = new this.recipeSubRecipeModel(dtoWithObjectIds);
-        return created.save();
+        const saved = await created.save();
+        this.logger.log(`✅ Created recipe sub-recipe - ID: ${saved.id}, parentRecipeId: ${createDto.parentRecipeId}, childRecipeId: ${createDto.childRecipeId}, quantity: ${createDto.quantity}`);
+        return saved;
     }
 
     async findAll(): Promise<RecipeSubRecipe[]> {
@@ -101,6 +105,7 @@ export class RecipeSubRecipesService {
         if (!updated) {
             throw new NotFoundException(`RecipeSubRecipe with ID ${id} not found`);
         }
+        this.logger.log(`✅ Updated recipe sub-recipe - ID: ${id}`);
         return updated;
     }
 
@@ -109,6 +114,7 @@ export class RecipeSubRecipesService {
         if (!result) {
             throw new NotFoundException(`RecipeSubRecipe with ID ${id} not found`);
         }
+        this.logger.log(`✅ Deleted recipe sub-recipe - ID: ${id}`);
     }
 
     private async wouldCreateCycle(parentId: string, childId: string, excludeId?: string): Promise<boolean> {
@@ -151,5 +157,9 @@ export class RecipeSubRecipesService {
         }));
 
         return subRecipes;
+    }
+
+    async findAllByParentRecipeId(parentRecipeId: string): Promise<RecipeSubRecipe[]> {
+        return this.recipeSubRecipeModel.find({ parentRecipeId: new Types.ObjectId(parentRecipeId) }).exec();
     }
 }

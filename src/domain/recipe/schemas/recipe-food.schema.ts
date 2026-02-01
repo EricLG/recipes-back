@@ -20,3 +20,4 @@ export type RecipeFoodDocument = RecipeFood & Document;
 export const RecipeFoodSchema = SchemaFactory.createForClass(RecipeFood);
 
 RecipeFoodSchema.set('toJSON', { virtuals: true });
+RecipeFoodSchema.set('toObject', { virtuals: true });

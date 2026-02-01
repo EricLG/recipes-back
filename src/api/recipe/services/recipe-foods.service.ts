@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
@@ -9,6 +9,8 @@ import { UpdateRecipeFoodDto } from './../dto/update-recipe-food.dto';
 
 @Injectable()
 export class RecipeFoodsService {
+    private readonly logger = new Logger(RecipeFoodsService.name);
+
     constructor(
         @InjectModel(RecipeFood.name) private recipeFoodModel: Model<RecipeFoodDocument>,
     ) {}
@@ -18,11 +20,14 @@ export class RecipeFoodsService {
         const dtoWithObjectIds = {
             ...createRecipeFoodDto,
             recipeId: new Types.ObjectId(createRecipeFoodDto.recipeId),
+            foodId: new Types.ObjectId(createRecipeFoodDto.foodId),
             measureId: new Types.ObjectId(createRecipeFoodDto.measureId),
         };
 
         const createdRecipeFood = new this.recipeFoodModel(dtoWithObjectIds);
-        return createdRecipeFood.save();
+        const saved = await createdRecipeFood.save();
+        this.logger.log(`✅ Created recipe food - ID: ${saved.id}, recipeId: ${createRecipeFoodDto.recipeId}, foodId: ${createRecipeFoodDto.foodId}, quantity: ${createRecipeFoodDto.quantity}`);
+        return saved;
     }
 
     async findAll(): Promise<RecipeFood[]> {
@@ -47,6 +52,9 @@ export class RecipeFoodsService {
         if (updateRecipeFoodDto.recipeId) {
             updateData.recipeId = new Types.ObjectId(updateRecipeFoodDto.recipeId);
         }
+        if (updateRecipeFoodDto.foodId) {
+            updateData.foodId = new Types.ObjectId(updateRecipeFoodDto.foodId);
+        }
         if (updateRecipeFoodDto.measureId) {
             updateData.measureId = new Types.ObjectId(updateRecipeFoodDto.measureId);
         }
@@ -57,6 +65,7 @@ export class RecipeFoodsService {
         if (!updatedRecipeFood) {
             throw new NotFoundException(`RecipeFood with ID ${id} not found`);
         }
+        this.logger.log(`✅ Updated recipe food - ID: ${id}`);
         return updatedRecipeFood;
     }
 
@@ -65,16 +74,22 @@ export class RecipeFoodsService {
         if (!result) {
             throw new NotFoundException(`RecipeFood with ID ${id} not found`);
         }
+        this.logger.log(`✅ Deleted recipe food - ID: ${id}`);
     }
 
     async findByRecipeId(recipeId: string): Promise<PopulatedRecipeFood[]> {
-        return await this.recipeFoodModel.find({ recipeId: new Types.ObjectId(recipeId) })
-            .populate({
-                path: 'measureId',
-                populate: {
-                    path: 'foodId'
-                }
-            })
-            .exec() as unknown as PopulatedRecipeFood[];
+        const items = await this.recipeFoodModel.find({ recipeId: new Types.ObjectId(recipeId) })
+            .populate('measureId')
+            .populate('foodId')
+            .exec();
+
+        const PRF : PopulatedRecipeFood[] = items.map(item => ({
+            id: item.id,
+            recipeId: (item.recipeId as any).toString(),
+            measure: item.measureId as unknown as any,
+            food: item.foodId as unknown as any,
+            quantity: item.quantity,
+        }));
+        return PRF;
     }
 }

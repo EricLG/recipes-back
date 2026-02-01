@@ -1,4 +1,4 @@
-import { IsBoolean, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsEnum, IsNumber, IsString } from 'class-validator';
 
 import { RecipeCategory } from './../../../domain/recipe/enums/recipe-category.enum';
 import { RecipeSeason } from './../../../domain/recipe/enums/recipe-season.enum';
@@ -11,12 +11,10 @@ export class CreateRecipeDto {
       instructions: string;
 
   @IsBoolean()
-  @IsOptional()
-      vegetarian?: boolean;
+      vegetarian: boolean;
 
   @IsEnum(RecipeSeason)
-  @IsOptional()
-      season?: RecipeSeason;
+      season: RecipeSeason;
 
   @IsEnum(RecipeCategory)
       category: RecipeCategory;

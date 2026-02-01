@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { Types } from "mongoose";
 
 import { Recipe } from '../schemas/recipe.schema';
-import { DetailedRecipeDto } from './../../../api/recipe/dto/response-recipe-food.dto';
+import { DetailedRecipeDto, DetailedRecipeFood, DetailedRecipeSubRecipe } from './../../../api/recipe/dto/response-recipe-food.dto';
 import { Food } from './../../food/schemas/food.schema';
 import { Measure } from './../../food/schemas/measure.schema';
 
@@ -12,7 +12,7 @@ export type LeanRecipeFood = {
     recipeId: string;
     quantity: number;
     measureId: Measure & { foodId: Food };
-    };
+};
 
 export type LeanSubRecipe = {
     _id: string;
@@ -27,28 +27,52 @@ export type LeanSubRecipe = {
 @Injectable()
 export class RecipeMapper {
 
-    toDetailedRecipeDto(recipe: LeanRecipe, recipeFoods: LeanRecipeFood[], subRecipes: LeanSubRecipe[]): DetailedRecipeDto {
+    toDetailedRecipeDto(recipe: Recipe | LeanRecipe, recipeFoods: any[], subRecipes: any[]): DetailedRecipeDto {
+        const recipeId = this.getId(recipe);
+
         return {
-            id: recipe._id.toString(),
+            id: recipeId,
             name: recipe.name,
             instructions: recipe.instructions,
             vegetarian: recipe.vegetarian,
             season: recipe.season,
             category: recipe.category,
             servings: recipe.servings,
-
-            recipeFoods: recipeFoods.map(rf => ({
-                _id: rf._id,
-                quantity: rf.quantity,
-                food: rf.measureId.foodId,
-                measure: rf.measureId
-            })),
-            recipeSubRecipes: subRecipes.map(sr => ({
-                _id: sr._id,
-                parentRecipeId: sr.parentRecipeId,
-                quantity: sr.quantity,
-                childRecipe: this.toDetailedRecipeDto(sr.childRecipeId, sr.childRecipeId.recipeFoods ?? [], []) // récursion contrôlée (ou lazy)
-            }))
+            recipeFoods: this.mapRecipeFoods(recipeFoods),
+            recipeSubRecipes: this.mapRecipeSubRecipes(subRecipes),
         };
     }
+
+    private getId(doc: any): string {
+        if (doc == null) return '';
+        if (typeof doc._id === 'string') {
+            return doc._id;
+        }
+        if (doc._id && typeof doc._id.toString === 'function') {
+            return doc._id.toString();
+        }
+        if (typeof doc.id === 'string') {
+            return doc.id;
+        }
+        return '';
+    }
+
+    private mapRecipeFoods(recipeFoods: any[]): DetailedRecipeFood[] {
+        return recipeFoods.map((rf: any) => ({
+            id: this.getId(rf),
+            quantity: (rf.quantity as number) || 0,
+            food: rf.food || {},
+            measure: rf.measure || {},
+        }));
+    }
+
+    private mapRecipeSubRecipes(subRecipes: any[]): DetailedRecipeSubRecipe[] {
+        return subRecipes.map((sr: any) => ({
+            id: this.getId(sr),
+            parentRecipeId: this.getId(sr.parentRecipeId),
+            quantity: (sr.quantity as number) || 0,
+            childRecipe: this.toDetailedRecipeDto(sr.childRecipeId, sr.childRecipeId?.recipeFoods ?? [], []),
+        }));
+    }
+
 }
