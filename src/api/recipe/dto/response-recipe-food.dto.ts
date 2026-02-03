@@ -7,6 +7,7 @@ import { RecipeSeason } from './../../../domain/recipe/enums/recipe-season.enum'
 import { Recipe } from './../../../domain/recipe/schemas/recipe.schema';
 
 export interface PopulatedRecipeFood {
+    _id: Types.ObjectId;
     id: string;
     recipeId: string;
     measure: Measure;
@@ -30,7 +31,7 @@ export interface DetailedRecipeFood {
 
 export interface DetailedRecipeSubRecipe {
     id: string;
-    parentRecipeId: string;
+    parentRecipeId: Types.ObjectId;
     quantity: number;
     childRecipe: DetailedRecipeDto;
 }

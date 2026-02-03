@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
+import { IFood, IMeasure, IPopulatedRecipeFood } from '../dto/recipe-food-response.dto';
 import { RecipeFood, RecipeFoodDocument } from './../../../domain/recipe/schemas/recipe-food.schema';
 import { CreateRecipeFoodDto } from './../dto/create-recipe-food.dto';
-import { PopulatedRecipeFood } from './../dto/response-recipe-food.dto';
 import { UpdateRecipeFoodDto } from './../dto/update-recipe-food.dto';
 
 @Injectable()
@@ -77,19 +78,12 @@ export class RecipeFoodsService {
         this.logger.log(`✅ Deleted recipe food - ID: ${id}`);
     }
 
-    async findByRecipeId(recipeId: string): Promise<PopulatedRecipeFood[]> {
+    async findByRecipeId(recipeId: string): Promise<IPopulatedRecipeFood[]> {
         const items = await this.recipeFoodModel.find({ recipeId: new Types.ObjectId(recipeId) })
-            .populate('measureId')
-            .populate('foodId')
+            .populate<{ foodId: IFood }>('foodId')
+            .populate<{ measureId: IMeasure }>('measureId')
             .exec();
 
-        const PRF : PopulatedRecipeFood[] = items.map(item => ({
-            id: item.id,
-            recipeId: (item.recipeId as any).toString(),
-            measure: item.measureId as unknown as any,
-            food: item.foodId as unknown as any,
-            quantity: item.quantity,
-        }));
-        return PRF;
+        return items as IPopulatedRecipeFood[];
     }
 }

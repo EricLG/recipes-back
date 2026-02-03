@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
-import { PopulatedRecipeSubRecipe } from './../dto/response-recipe-food.dto';
 import { RecipeFoodsService } from './recipe-foods.service';
 import { RecipeSubRecipe, RecipeSubRecipeDocument } from '../../../domain/recipe/schemas/recipe-sub-recipe.schema';
 import { Recipe } from '../../../domain/recipe/schemas/recipe.schema';
 import { CreateRecipeSubRecipeDto } from '../dto/create-recipe-sub-recipe.dto';
+import { IPopulatedRecipeFood } from '../dto/recipe-food-response.dto';
+import { IPopulatedRecipeSubRecipe, IRecipe } from '../dto/recipe-sub-recipe-response.dto';
 import { UpdateRecipeSubRecipeDto } from '../dto/update-recipe-sub-recipe.dto';
 
 @Injectable()
@@ -145,18 +147,20 @@ export class RecipeSubRecipesService {
         return false;
     }
 
-    async findByParentRecipeId(recipeId: string): Promise<PopulatedRecipeSubRecipe[]> {
+    async findByParentRecipeId(recipeId: string): Promise<IPopulatedRecipeSubRecipe[]> {
         const subRecipes = await this.recipeSubRecipeModel.find({ parentRecipeId: new Types.ObjectId(recipeId) })
-            .populate('childRecipeId')
-            .exec() as unknown as PopulatedRecipeSubRecipe[];
+            .populate<{ childRecipeId: IRecipe }>('childRecipeId')
+            .exec();
 
-        // Fetch recipeFoods for each child recipe
-        await Promise.all(subRecipes.map(async (subRecipe) => {
-            const recipeFoods = await this.recipeFoodsService.findByRecipeId(subRecipe.childRecipeId._id.toString());
+        const populatedSubRecipes = subRecipes as IPopulatedRecipeSubRecipe[];
+
+        await Promise.all(populatedSubRecipes.map(async (subRecipe) => {
+            const recipeFoods: IPopulatedRecipeFood[] = await this.recipeFoodsService.findByRecipeId(subRecipe.childRecipeId._id.toString());
+
             subRecipe.childRecipeId.recipeFoods = recipeFoods;
         }));
 
-        return subRecipes;
+        return populatedSubRecipes;
     }
 
     async findAllByParentRecipeId(parentRecipeId: string): Promise<RecipeSubRecipe[]> {

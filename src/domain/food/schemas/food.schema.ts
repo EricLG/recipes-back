@@ -28,3 +28,4 @@ export type FoodDocument = Food & Document;
 export const FoodSchema = SchemaFactory.createForClass(Food);
 
 FoodSchema.set('toJSON', { virtuals: true });
+FoodSchema.set('toObject', { virtuals: true });

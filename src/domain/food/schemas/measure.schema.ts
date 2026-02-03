@@ -20,3 +20,4 @@ export type MeasureDocument = Measure & Document;
 export const MeasureSchema = SchemaFactory.createForClass(Measure);
 
 MeasureSchema.set('toJSON', { virtuals: true });
+MeasureSchema.set('toObject', { virtuals: true });

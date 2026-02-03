@@ -11,6 +11,7 @@ import { CreateRecipeDto } from './../dto/create-recipe.dto';
 import { UpdateRecipeDto } from './../dto/update-recipe.dto';
 import { RecipeFoodsService } from './recipe-foods.service';
 import { RecipeSubRecipesService } from './recipe-sub-recipes.service';
+import { IRecipe } from '../dto/recipe-sub-recipe-response.dto';
 
 @Injectable()
 export class RecipesService {
@@ -76,7 +77,7 @@ export class RecipesService {
         const subRecipes = await this.svcRecipeSubRecipes.findByParentRecipeId(id);
 
         // Transform to DetailedRecipeDto
-        return this.mapper.toDetailedRecipeDto(recipe, recipeFoods, subRecipes);
+        return this.mapper.toDetailedRecipeDto(recipe as IRecipe, recipeFoods, subRecipes);
     }
 
     async createWithRelations(dto: CreateRecipeWithRelationsDto): Promise<DetailedRecipeDto> {
@@ -134,7 +135,6 @@ export class RecipesService {
 
     async updateWithRelations(id: string, dto: UpdateRecipeWithRelationsDto): Promise<DetailedRecipeDto> {
         this.logger.debug(`[updateWithRelations] Updating recipe with relations - ID: ${id}`);
-
         // Check recipe exists
         const recipe = await this.recipeModel.findById(id).exec();
         if (!recipe) {
@@ -154,7 +154,7 @@ export class RecipesService {
 
         // Handle recipeFoods sync (upsert: id present = update, id absent = create, missing = delete)
         if (dto.recipeFoods !== undefined) {
-            this.logger.debug(`[updateWithRelations] Syncing recipe foods - total items: ${dto.recipeFoods.length}`);
+            this.logger.debug(`[updateWithRelations] Syncing recipe foods - total items from incoming DTO: ${dto.recipeFoods.length}`);
 
             // Clean null ids to undefined
             const cleanRecipeFoods = dto.recipeFoods.map(f => ({
@@ -164,6 +164,7 @@ export class RecipesService {
 
             // Fetch existing foods
             const existingFoods = await this.svcRecipeFoods.findByRecipeId(id);
+            this.logger.debug(`[updateWithRelations] Syncing recipe foods - existing items in DB: ${existingFoods.length}`);
 
             const incomingFoodIds = new Set(cleanRecipeFoods.filter(f => f.id).map(f => f.id!));
 
@@ -171,7 +172,7 @@ export class RecipesService {
             for (const food of existingFoods) {
                 if (!incomingFoodIds.has(food.id)) {
                     await this.svcRecipeFoods.remove(food.id);
-                    this.logger.log(`✅ Deleted recipe food - ID: ${food.id}`);
+                    // this.logger.log(`✅ Deleted recipe food - ID: ${food.id}`);
                 }
             }
 
@@ -185,17 +186,14 @@ export class RecipesService {
                             measureId: f.measureId,
                             quantity: f.quantity,
                         });
-                        this.logger.log(`✅ Updated recipe food - ID: ${f.id}`);
                     } else {
                         // Create
-                        const created = await this.svcRecipeFoods.create({
+                        await this.svcRecipeFoods.create({
                             recipeId: id,
                             foodId: f.foodId,
                             measureId: f.measureId,
                             quantity: f.quantity,
                         });
-                        const foodIdStr = ((created as unknown) as { _id?: { toString(): string } })._id?.toString() || '';
-                        this.logger.log(`✅ Created recipe food - ID: ${foodIdStr}, recipeId: ${id}`);
                     }
                 })
             );
@@ -218,9 +216,9 @@ export class RecipesService {
 
             // Delete sub-recipes not in incoming list
             for (const subRecipe of existingSubRecipes) {
-                if (!incomingSubRecipeIds.has(subRecipe._id.toString())) {
-                    await this.svcRecipeSubRecipes.remove(subRecipe._id.toString());
-                    this.logger.log(`✅ Deleted recipe sub-recipe - ID: ${subRecipe._id}`);
+                if (!incomingSubRecipeIds.has(subRecipe.id)) {
+                    await this.svcRecipeSubRecipes.remove(subRecipe.id);
+                    this.logger.log(`✅ Deleted recipe sub-recipe - ID: ${subRecipe.id}`);
                 }
             }
 
