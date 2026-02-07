@@ -1,10 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common'
 
-
-import { IPopulatedRecipeFood } from "./../../../api/recipe/dto/recipe-food-response.dto";
-import { IPopulatedRecipeSubRecipe, IRecipe } from './../../../api/recipe/dto/recipe-sub-recipe-response.dto';
-import { DetailedRecipeDto, DetailedRecipeFood, DetailedRecipeSubRecipe } from './../../../api/recipe/dto/response-recipe-food.dto';
-
+import { IPopulatedRecipeFood } from './../../../api/recipe/dto/recipe-food-response.dto'
+import { IPopulatedRecipeSubRecipe, IRecipe } from './../../../api/recipe/dto/recipe-sub-recipe-response.dto'
+import { DetailedRecipeDto, DetailedRecipeFood, DetailedRecipeSubRecipe } from './../../../api/recipe/dto/response-recipe-food.dto'
 
 @Injectable()
 export class RecipeMapper {
@@ -22,7 +20,7 @@ export class RecipeMapper {
             servings: recipe.servings,
             recipeFoods: this.mapRecipeFoods(recipeFoods),
             recipeSubRecipes: this.mapRecipeSubRecipes(subRecipes),
-        };
+        }
     }
 
     private mapRecipeFoods(recipeFoods: IPopulatedRecipeFood[]): DetailedRecipeFood[] {
@@ -31,7 +29,7 @@ export class RecipeMapper {
             quantity: rf.quantity || 0,
             food: rf.foodId || {},
             measure: rf.measureId || {},
-        }));
+        }))
     }
 
     private mapRecipeSubRecipes(subRecipes: IPopulatedRecipeSubRecipe[]): DetailedRecipeSubRecipe[] {
@@ -40,7 +38,7 @@ export class RecipeMapper {
             parentRecipeId: sr.parentRecipeId,
             quantity: sr.quantity || 0,
             childRecipe: this.toDetailedRecipeDto(sr.childRecipeId, sr.childRecipeId?.recipeFoods ?? [], []),
-        }));
+        }))
     }
 
 }

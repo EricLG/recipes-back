@@ -1,89 +1,97 @@
-import { Type } from 'class-transformer';
-import { Allow, IsArray, IsBoolean, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer'
+import { Allow, IsArray, IsBoolean, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 
-import { NutrientsDto } from './nutrients.dto';
+import { NutrientsDto } from './nutrients.dto'
 
 export class MeasureItemDto {
-  @Allow()
-      id?: string | null;
 
-  @IsString()
-      label: string;
+    @Allow()
+    id?: string | null
 
-  @IsNumber()
-      grams: number;
+    @IsString()
+    label: string
 
-  @IsBoolean()
-      isDefault: boolean;
+    @IsNumber()
+    grams: number
+
+    @IsBoolean()
+    isDefault: boolean
+
 }
 
 export class CreateFoodWithMeasuresDto {
-  @IsString()
-      name: string;
 
-  @IsString()
-      referenceUnit: string;
+    @IsString()
+    name: string
 
-  @IsNumber()
-      density: number;
+    @IsString()
+    referenceUnit: string
 
-  @ValidateNested()
-  @Type(() => NutrientsDto)
-      nutrientsPer100: NutrientsDto;
+    @IsNumber()
+    density: number
 
-  @IsBoolean()
-      needReview: boolean;
+    @ValidateNested()
+    @Type(() => NutrientsDto)
+    nutrientsPer100: NutrientsDto
 
-  @IsString()
-      category: string;
+    @IsBoolean()
+    needReview: boolean
 
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => MeasureItemDto)
-      measures: MeasureItemDto[];
+    @IsString()
+    category: string
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => MeasureItemDto)
+    measures: MeasureItemDto[]
+
 }
 
 export class UpdateFoodWithMeasuresDto {
-  @IsString()
-  @IsOptional()
-      name?: string;
 
-  @IsString()
-  @IsOptional()
-      referenceUnit?: string;
+    @IsString()
+    @IsOptional()
+    name?: string
 
-  @IsNumber()
-  @IsOptional()
-      density?: number;
+    @IsString()
+    @IsOptional()
+    referenceUnit?: string
 
-  @ValidateNested()
-  @Type(() => NutrientsDto)
-  @IsOptional()
-      nutrientsPer100?: NutrientsDto;
+    @IsNumber()
+    @IsOptional()
+    density?: number
 
-  @IsBoolean()
-  @IsOptional()
-      needReview?: boolean;
+    @ValidateNested()
+    @Type(() => NutrientsDto)
+    @IsOptional()
+    nutrientsPer100?: NutrientsDto
 
-  @IsString()
-  @IsOptional()
-      category?: string;
+    @IsBoolean()
+    @IsOptional()
+    needReview?: boolean
 
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => MeasureItemDto)
-  @IsOptional()
-      measures?: MeasureItemDto[];
+    @IsString()
+    @IsOptional()
+    category?: string
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => MeasureItemDto)
+    @IsOptional()
+    measures?: MeasureItemDto[]
+
 }
 
 export class FoodWithMeasuresDto {
-    id: string;
-    name: string;
-    referenceUnit: string;
-    density: number;
-    nutrientsPer100: NutrientsDto;
-    needReview: boolean;
-    category: string;
-  @Type(() => MeasureItemDto)
-      measures: MeasureItemDto[];
+
+    id: string
+    name: string
+    referenceUnit: string
+    density: number
+    nutrientsPer100: NutrientsDto
+    needReview: boolean
+    category: string
+    @Type(() => MeasureItemDto)
+    measures: MeasureItemDto[]
+
 }

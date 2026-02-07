@@ -1,14 +1,17 @@
 // @ts-check
 import eslint from '@eslint/js';
+import { defineConfig } from 'eslint/config';
 import importPlugin from 'eslint-plugin-import'; // Ajout de l'import du plugin
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import stylistic from '@stylistic/eslint-plugin';
 
-export default tseslint.config(
+export default defineConfig([
     {
         ignores: ['eslint.config.mjs'],
     },
     eslint.configs.recommended,
+    stylistic.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
     {
         languageOptions: {
@@ -26,9 +29,14 @@ export default tseslint.config(
     {
         plugins: {
             import: importPlugin,
+            '@stylistic': stylistic
         },
         rules: {
-            "indent": ["error", 4],
+            '@stylistic/indent': ['error', 4],
+            '@stylistic/array-bracket-newline': ['error', { "multiline": true }],
+            '@stylistic/brace-style': ['error', '1tbs', { "allowSingleLine": false }],
+            '@stylistic/padded-blocks': ['error', { "classes": "always" }],
+            '@stylistic/object-property-newline': ['error', { "allowAllPropertiesOnSameLine": true }],
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-floating-promises': 'warn',
             '@typescript-eslint/no-unsafe-argument': 'warn',
@@ -41,4 +49,4 @@ export default tseslint.config(
             'import/no-absolute-path': 'error',
         },
     },
-);
+]);

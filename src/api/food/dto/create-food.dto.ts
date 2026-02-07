@@ -1,26 +1,27 @@
-import { Type } from 'class-transformer';
-import { IsString, IsNumber, ValidateNested, IsBoolean } from 'class-validator';
+import { Type } from 'class-transformer'
+import { IsString, IsNumber, ValidateNested, IsBoolean } from 'class-validator'
 
-import { NutrientsDto } from './nutrients.dto';
+import { NutrientsDto } from './nutrients.dto'
 
 export class CreateFoodDto {
 
-  @IsString()
-      name: string;
+    @IsString()
+    name: string
 
-  @IsString()
-      referenceUnit: string;
+    @IsString()
+    referenceUnit: string
 
-  @IsNumber()
-      density: number;
+    @IsNumber()
+    density: number
 
-  @ValidateNested()
-  @Type(() => NutrientsDto)
-      nutrientsPer100: NutrientsDto;
+    @ValidateNested()
+    @Type(() => NutrientsDto)
+    nutrientsPer100: NutrientsDto
 
-  @IsBoolean()
-      needReview: boolean;
+    @IsBoolean()
+    needReview: boolean
 
-  @IsString()
-      category: string;
+    @IsString()
+    category: string
+
 }

@@ -1,16 +1,18 @@
-import { IsString, IsNumber, IsBoolean, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsBoolean, IsOptional } from 'class-validator'
 
 export class CreateMeasureDto {
-  @IsString()
-      foodId: string;
 
-  @IsString()
-      label: string;
+    @IsString()
+    foodId: string
 
-  @IsNumber()
-      grams: number;
+    @IsString()
+    label: string
 
-  @IsBoolean()
-  @IsOptional()
-      isDefault?: boolean;
+    @IsNumber()
+    grams: number
+
+    @IsBoolean()
+    @IsOptional()
+    isDefault?: boolean
+
 }

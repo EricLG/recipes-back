@@ -1,15 +1,17 @@
-import { IsString, IsNumber } from 'class-validator';
+import { IsString, IsNumber } from 'class-validator'
 
 export class CreateRecipeFoodDto {
-  @IsString()
-      recipeId: string;
 
-  @IsString()
-      foodId: string;
+    @IsString()
+    recipeId: string
 
-  @IsString()
-      measureId: string;
+    @IsString()
+    foodId: string
 
-  @IsNumber()
-      quantity: number;
+    @IsString()
+    measureId: string
+
+    @IsNumber()
+    quantity: number
+
 }

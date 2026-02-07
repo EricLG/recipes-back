@@ -1,24 +1,26 @@
-import { IsBoolean, IsEnum, IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsEnum, IsNumber, IsString } from 'class-validator'
 
-import { RecipeCategory } from './../../../domain/recipe/enums/recipe-category.enum';
-import { RecipeSeason } from './../../../domain/recipe/enums/recipe-season.enum';
+import { RecipeCategory } from './../../../domain/recipe/enums/recipe-category.enum'
+import { RecipeSeason } from './../../../domain/recipe/enums/recipe-season.enum'
 
 export class CreateRecipeDto {
-  @IsString()
-      name: string;
 
-  @IsString()
-      instructions: string;
+    @IsString()
+    name: string
 
-  @IsBoolean()
-      vegetarian: boolean;
+    @IsString()
+    instructions: string
 
-  @IsEnum(RecipeSeason)
-      season: RecipeSeason;
+    @IsBoolean()
+    vegetarian: boolean
 
-  @IsEnum(RecipeCategory)
-      category: RecipeCategory;
+    @IsEnum(RecipeSeason)
+    season: RecipeSeason
 
-  @IsNumber()
-      servings: number;
+    @IsEnum(RecipeCategory)
+    category: RecipeCategory
+
+    @IsNumber()
+    servings: number
+
 }
