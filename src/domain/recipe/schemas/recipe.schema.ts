@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 
-import { RecipeCategory } from './../enums/recipe-category.enum'
-import { RecipeSeason } from './../enums/recipe-season.enum'
+import { RecipeCategory } from '../enums/recipe-category.enum'
+import { RecipeSeason } from '../enums/recipe-season.enum'
 
 @Schema({ collection: 'recipes', timestamps: true })
 export class Recipe {

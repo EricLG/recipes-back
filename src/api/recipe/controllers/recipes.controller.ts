@@ -1,12 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
-import { Recipe } from './../../../domain/recipe/schemas/recipe.schema'
-import { CreateRecipeDto } from './../dto/create-recipe.dto'
-import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from './../dto/recipe-with-relations.dto'
-import { DetailedRecipeDto } from './../dto/response-recipe-food.dto'
-import { UpdateRecipeDto } from './../dto/update-recipe.dto'
-import { DetailedRecipeByAggregationDto, RecipeQueryService } from './../services/recipe-query.service'
-import { RecipesService } from './../services/recipes.service'
+import { Recipe } from '../../../domain/recipe/schemas/recipe.schema'
+import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from '../dto/recipe-with-relations.dto'
+import { CreateRecipeDto, DetailedRecipeDto, UpdateRecipeDto } from '../dto/recipe.dto'
+import { DetailedRecipeByAggregationDto, RecipeQueryService } from '../services/recipe-query.service'
+import { RecipesService } from '../services/recipes.service'
 
 @Controller('recipes')
 export class RecipesController {

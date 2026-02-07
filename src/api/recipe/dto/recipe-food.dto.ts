@@ -1,6 +1,26 @@
+import { PartialType } from '@nestjs/mapped-types'
+import { IsString, IsNumber } from 'class-validator'
 import { Types } from 'mongoose'
 
-import { Nutrients } from '../../../domain/food/schemas/nutrients.schema'
+import { Nutrients } from './../../../domain/food/schemas/nutrients.schema'
+
+export class CreateRecipeFoodDto {
+
+    @IsString()
+    recipeId: string
+
+    @IsString()
+    foodId: string
+
+    @IsString()
+    measureId: string
+
+    @IsNumber()
+    quantity: number
+
+}
+
+export class UpdateRecipeFoodDto extends PartialType(CreateRecipeFoodDto) {}
 
 export interface IFood {
     _id: Types.ObjectId

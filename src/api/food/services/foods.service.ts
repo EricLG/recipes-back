@@ -2,11 +2,10 @@ import { BadRequestException, Injectable, NotFoundException, Logger } from '@nes
 import { InjectModel } from '@nestjs/mongoose'
 import { Model, Types } from 'mongoose'
 
-import { Food, FoodDocument } from './../../../domain/food/schemas/food.schema'
-import { Measure, MeasureDocument } from './../../../domain/food/schemas/measure.schema'
-import { CreateFoodDto } from './../dto/create-food.dto'
-import { CreateFoodWithMeasuresDto, FoodWithMeasuresDto, UpdateFoodWithMeasuresDto } from './../dto/food-with-measures.dto'
-import { UpdateFoodDto } from './../dto/update-food.dto'
+import { Food, FoodDocument } from '../../../domain/food/schemas/food.schema'
+import { Measure, MeasureDocument } from '../../../domain/food/schemas/measure.schema'
+import { CreateFoodWithMeasuresDto, FoodWithMeasuresDto, UpdateFoodWithMeasuresDto } from '../dto/food-with-measures.dto'
+import { CreateFoodDto, UpdateFoodDto } from '../dto/food.dto'
 
 @Injectable()
 export class FoodsService {
@@ -39,9 +38,7 @@ export class FoodsService {
     }
 
     async update(id: string, updateFoodDto: UpdateFoodDto): Promise<Food> {
-        const updatedFood = await this.foodModel
-            .findByIdAndUpdate(id, updateFoodDto, { new: true })
-            .exec()
+        const updatedFood = await this.foodModel.findByIdAndUpdate(id, updateFoodDto, { new: true }).exec()
         if (!updatedFood) {
             throw new NotFoundException(`Food with ID ${id} not found`)
         }

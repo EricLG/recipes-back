@@ -1,10 +1,36 @@
+import { PartialType } from '@nestjs/mapped-types'
+import { IsBoolean, IsEnum, IsNumber, IsString } from 'class-validator'
 import { Types } from 'mongoose'
 
-import { Food } from './../../../domain/food/schemas/food.schema'
-import { Measure } from './../../../domain/food/schemas/measure.schema'
-import { RecipeCategory } from './../../../domain/recipe/enums/recipe-category.enum'
-import { RecipeSeason } from './../../../domain/recipe/enums/recipe-season.enum'
-import { Recipe } from './../../../domain/recipe/schemas/recipe.schema'
+import { Food } from '../../../domain/food/schemas/food.schema'
+import { Measure } from '../../../domain/food/schemas/measure.schema'
+import { RecipeCategory } from '../../../domain/recipe/enums/recipe-category.enum'
+import { RecipeSeason } from '../../../domain/recipe/enums/recipe-season.enum'
+import { Recipe } from '../../../domain/recipe/schemas/recipe.schema'
+
+export class CreateRecipeDto {
+
+    @IsString()
+    name: string
+
+    @IsString()
+    instructions: string
+
+    @IsBoolean()
+    vegetarian: boolean
+
+    @IsEnum(RecipeSeason)
+    season: RecipeSeason
+
+    @IsEnum(RecipeCategory)
+    category: RecipeCategory
+
+    @IsNumber()
+    servings: number
+
+}
+
+export class UpdateRecipeDto extends PartialType(CreateRecipeDto) {}
 
 export interface PopulatedRecipeFood {
     _id: Types.ObjectId

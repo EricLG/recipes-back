@@ -6,10 +6,8 @@ import { Model, Types } from 'mongoose'
 import { RecipeFoodsService } from './recipe-foods.service'
 import { RecipeSubRecipe, RecipeSubRecipeDocument } from '../../../domain/recipe/schemas/recipe-sub-recipe.schema'
 import { Recipe } from '../../../domain/recipe/schemas/recipe.schema'
-import { CreateRecipeSubRecipeDto } from '../dto/create-recipe-sub-recipe.dto'
-import { IPopulatedRecipeFood } from '../dto/recipe-food-response.dto'
-import { IPopulatedRecipeSubRecipe, IRecipe } from '../dto/recipe-sub-recipe-response.dto'
-import { UpdateRecipeSubRecipeDto } from '../dto/update-recipe-sub-recipe.dto'
+import { IPopulatedRecipeFood } from '../dto/recipe-food.dto'
+import { CreateRecipeSubRecipeDto, IPopulatedRecipeSubRecipe, IRecipe, UpdateRecipeSubRecipeDto } from '../dto/recipe-sub-recipe.dto'
 
 @Injectable()
 export class RecipeSubRecipesService {

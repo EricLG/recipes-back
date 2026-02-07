@@ -1,5 +1,5 @@
-import { RecipeCategory } from './../src/domain/recipe/enums/recipe-category.enum';
-import { RecipeSeason } from './../src/domain/recipe/enums/recipe-season.enum';
+import { RecipeCategory } from '../src/domain/recipe/enums/recipe-category.enum';
+import { RecipeSeason } from '../src/domain/recipe/enums/recipe-season.enum';
 
 // Type pour le seed avec noms d'ingrédients en string
 export interface SeedRecipe {

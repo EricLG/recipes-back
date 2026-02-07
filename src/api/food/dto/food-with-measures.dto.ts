@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer'
 import { Allow, IsArray, IsBoolean, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 
-import { NutrientsDto } from './nutrients.dto'
+import { NutrientsDto } from './food.dto'
 
 export class MeasureItemDto {
 

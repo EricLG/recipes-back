@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
 import { RecipeSubRecipe } from '../../../domain/recipe/schemas/recipe-sub-recipe.schema'
-import { CreateRecipeSubRecipeDto } from '../dto/create-recipe-sub-recipe.dto'
-import { UpdateRecipeSubRecipeDto } from '../dto/update-recipe-sub-recipe.dto'
+import { CreateRecipeSubRecipeDto, UpdateRecipeSubRecipeDto } from '../dto/recipe-sub-recipe.dto'
 import { RecipeSubRecipesService } from '../services/recipe-sub-recipes.service'
 
 @Controller('recipe-sub-recipes')

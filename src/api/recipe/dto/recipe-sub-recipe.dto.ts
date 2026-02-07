@@ -1,8 +1,37 @@
+import { IsMongoId, IsNumber, Min } from 'class-validator'
 import { Types } from 'mongoose'
 
 import { RecipeCategory } from './../../../domain/recipe/enums/recipe-category.enum'
 import { RecipeSeason } from './../../../domain/recipe/enums/recipe-season.enum'
-import { IPopulatedRecipeFood } from './recipe-food-response.dto'
+import { IPopulatedRecipeFood } from './recipe-food.dto'
+
+export class CreateRecipeSubRecipeDto {
+
+    @IsMongoId()
+    parentRecipeId: string
+
+    @IsMongoId()
+    childRecipeId: string
+
+    @IsNumber()
+    @Min(0)
+    quantity: number
+
+}
+
+export class UpdateRecipeSubRecipeDto {
+
+    @IsMongoId()
+    parentRecipeId?: string
+
+    @IsMongoId()
+    childRecipeId?: string
+
+    @IsNumber()
+    @Min(0)
+    quantity?: number
+
+}
 
 export interface IRecipe {
     _id: Types.ObjectId

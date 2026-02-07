@@ -47,6 +47,7 @@ export default defineConfig([
             }],
             'import/newline-after-import': ['error', { 'count': 1 }],
             'import/no-absolute-path': 'error',
+            'import/no-duplicates': 'error',
         },
     },
 ]);

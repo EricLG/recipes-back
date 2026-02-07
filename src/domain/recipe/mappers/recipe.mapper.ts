@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 
-import { IPopulatedRecipeFood } from './../../../api/recipe/dto/recipe-food-response.dto'
-import { IPopulatedRecipeSubRecipe, IRecipe } from './../../../api/recipe/dto/recipe-sub-recipe-response.dto'
-import { DetailedRecipeDto, DetailedRecipeFood, DetailedRecipeSubRecipe } from './../../../api/recipe/dto/response-recipe-food.dto'
+import { IPopulatedRecipeFood } from '../../../api/recipe/dto/recipe-food.dto'
+import { IPopulatedRecipeSubRecipe, IRecipe } from '../../../api/recipe/dto/recipe-sub-recipe.dto'
+import { DetailedRecipeDto, DetailedRecipeFood, DetailedRecipeSubRecipe } from './../../../api/recipe/dto/recipe.dto'
 
 @Injectable()
 export class RecipeMapper {

@@ -1,10 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
-import { Food } from './../../../domain/food/schemas/food.schema'
-import { CreateFoodDto } from './../dto/create-food.dto'
-import { CreateFoodWithMeasuresDto, FoodWithMeasuresDto, UpdateFoodWithMeasuresDto } from './../dto/food-with-measures.dto'
-import { UpdateFoodDto } from './../dto/update-food.dto'
-import { FoodsService } from './../services/foods.service'
+import { Food } from '../../../domain/food/schemas/food.schema'
+import { CreateFoodWithMeasuresDto, FoodWithMeasuresDto, UpdateFoodWithMeasuresDto } from '../dto/food-with-measures.dto'
+import { CreateFoodDto, UpdateFoodDto } from '../dto/food.dto'
+import { FoodsService } from '../services/foods.service'
 
 @Controller('foods')
 export class FoodsController {

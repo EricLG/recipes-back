@@ -1,4 +1,4 @@
-import { CreateFoodDto } from './../src/api/food/dto/create-food.dto';
+import { CreateFoodDto } from '../src/api/food/dto/food.dto';
 
 export const seedFoods: CreateFoodDto[] = [
     {

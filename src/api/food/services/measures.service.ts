@@ -2,9 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model, Types } from 'mongoose'
 
-import { Measure, MeasureDocument } from './../../../domain/food/schemas/measure.schema'
-import { CreateMeasureDto } from './../dto/create-measure.dto'
-import { UpdateMeasureDto } from './../dto/update-measure.dto'
+import { Measure, MeasureDocument } from '../../../domain/food/schemas/measure.schema'
+import { CreateMeasureDto, UpdateMeasureDto } from '../dto/measure.dto'
 
 @Injectable()
 export class MeasuresService {
@@ -32,9 +31,7 @@ export class MeasuresService {
     }
 
     async update(id: string, updateMeasureDto: UpdateMeasureDto): Promise<Measure> {
-        const updatedMeasure = await this.measureModel
-            .findByIdAndUpdate(id, updateMeasureDto, { new: true })
-            .exec()
+        const updatedMeasure = await this.measureModel.findByIdAndUpdate(id, updateMeasureDto, { new: true }).exec()
         if (!updatedMeasure) {
             throw new NotFoundException(`Measure with ID ${id} not found`)
         }

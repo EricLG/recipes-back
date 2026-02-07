@@ -3,10 +3,8 @@ import { Injectable, NotFoundException, Logger } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model, Types } from 'mongoose'
 
-import { IFood, IMeasure, IPopulatedRecipeFood } from '../dto/recipe-food-response.dto'
-import { RecipeFood, RecipeFoodDocument } from './../../../domain/recipe/schemas/recipe-food.schema'
-import { CreateRecipeFoodDto } from './../dto/create-recipe-food.dto'
-import { UpdateRecipeFoodDto } from './../dto/update-recipe-food.dto'
+import { RecipeFood, RecipeFoodDocument } from '../../../domain/recipe/schemas/recipe-food.schema'
+import { CreateRecipeFoodDto, IFood, IMeasure, IPopulatedRecipeFood, UpdateRecipeFoodDto } from '../dto/recipe-food.dto'
 
 @Injectable()
 export class RecipeFoodsService {
