@@ -28,7 +28,7 @@ export interface DetailedRecipeByAggregationDto {
     name: string
     instructions: string
     vegetarian: boolean
-    season: RecipeSeason
+    season: RecipeSeason[]
     category: RecipeCategory
     servings: number
     recipeFoods: DetailedRecipeFoodDto[]
@@ -36,6 +36,10 @@ export interface DetailedRecipeByAggregationDto {
 
 }
 
+/**
+ * Deprecated service that demonstrates how to use MongoDB aggregation to retrieve a recipe with all its related data in a single query.
+ * This approach is more efficient than multiple queries but can be complex to maintain. It is kept for demonstration purposes and is not used in the current implementation.
+ */
 @Injectable()
 export class RecipeQueryService {
 

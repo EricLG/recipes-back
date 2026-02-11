@@ -3,7 +3,7 @@ import { Allow, IsArray, IsBoolean, IsNumber, IsOptional, IsString, ValidateNest
 
 import { NutrientsDto } from './food.dto'
 
-export class MeasureItemDto {
+class MeasureItemDto {
 
     @Allow()
     id?: string | null

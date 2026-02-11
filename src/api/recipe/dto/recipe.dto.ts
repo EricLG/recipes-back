@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types'
-import { IsBoolean, IsEnum, IsNumber, IsString } from 'class-validator'
+import { IsArray, IsBoolean, IsEnum, IsNumber, IsString } from 'class-validator'
 import { Types } from 'mongoose'
 
 import { Food } from '../../../domain/food/schemas/food.schema'
@@ -19,8 +19,9 @@ export class CreateRecipeDto {
     @IsBoolean()
     vegetarian: boolean
 
-    @IsEnum(RecipeSeason)
-    season: RecipeSeason
+    @IsArray()
+    @IsEnum(RecipeSeason, { each: true })
+    season: RecipeSeason[]
 
     @IsEnum(RecipeCategory)
     category: RecipeCategory
@@ -67,7 +68,7 @@ export interface DetailedRecipeDto {
     name: string
     instructions: string
     vegetarian: boolean
-    season: RecipeSeason
+    season: RecipeSeason[]
     category: RecipeCategory
     servings: number
     recipeFoods: DetailedRecipeFood[]

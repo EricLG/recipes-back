@@ -39,7 +39,7 @@ export interface IRecipe {
     name: string
     instructions: string
     vegetarian: boolean
-    season: RecipeSeason
+    season: RecipeSeason[]
     category: RecipeCategory
     servings: number
     recipeFoods?: IPopulatedRecipeFood[] // optional, populated separately

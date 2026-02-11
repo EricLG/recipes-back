@@ -17,11 +17,12 @@ export class Recipe {
     vegetarian: boolean
 
     @Prop({
-        type: String,
+        type: [String],
         enum: RecipeSeason,
-        default: RecipeSeason.ALL_YEAR,
+        default: [RecipeSeason.ALL_YEAR],
+        required: true,
     })
-    season: RecipeSeason
+    season: RecipeSeason[]
 
     @Prop({
         type: String,

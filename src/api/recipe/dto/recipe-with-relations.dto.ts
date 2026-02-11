@@ -68,9 +68,10 @@ export class CreateRecipeWithRelationsDto {
     @IsOptional()
     vegetarian?: boolean
 
-    @IsEnum(RecipeSeason)
+    @IsArray()
+    @IsEnum(RecipeSeason, { each: true })
     @IsOptional()
-    season?: RecipeSeason
+    season?: RecipeSeason[]
 
     @IsEnum(RecipeCategory)
     category: RecipeCategory
@@ -104,9 +105,10 @@ export class UpdateRecipeWithRelationsDto {
     @IsOptional()
     vegetarian?: boolean
 
-    @IsEnum(RecipeSeason)
+    @IsArray()
+    @IsEnum(RecipeSeason, { each: true })
     @IsOptional()
-    season?: RecipeSeason
+    season?: RecipeSeason[]
 
     @IsEnum(RecipeCategory)
     @IsOptional()
