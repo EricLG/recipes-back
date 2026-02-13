@@ -1,6 +1,8 @@
 import { PartialType } from '@nestjs/mapped-types'
 import { Type } from 'class-transformer'
-import { IsString, IsNumber, ValidateNested, IsBoolean } from 'class-validator'
+import { IsString, IsNumber, ValidateNested, IsBoolean, IsEnum } from 'class-validator'
+
+import { FoodCategory } from '../../../domain/food/enums/food-category.enum'
 
 export class NutrientsDto {
 
@@ -45,8 +47,8 @@ export class CreateFoodDto {
     @IsBoolean()
     needReview: boolean
 
-    @IsString()
-    category: string
+    @IsEnum(FoodCategory)
+    category: FoodCategory
 
 }
 

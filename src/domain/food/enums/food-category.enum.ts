@@ -1,0 +1,16 @@
+export enum FoodCategory {
+    ANIMAL_PROTEINS = 'animal_proteins',
+    BEVERAGES = 'beverages',
+    CONDIMENTS = 'condiments',
+    DAIRY = 'dairy',
+    FATS = 'fats',
+    FRUITS = 'fruits',
+    LEGUMES = 'legumes',
+    OTHER = 'other',
+    PLANT_BASED = 'plant_based',
+    SEAFOOD = 'seafood',
+    STARCHES = 'starches',
+    SUPPLEMENTS = 'supplements',
+    SWEET_PRODUCTS = 'sweet_products',
+    VEGETABLES = 'vegetables',
+}

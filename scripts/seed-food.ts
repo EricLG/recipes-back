@@ -1,4 +1,5 @@
 import { CreateFoodDto } from '../src/api/food/dto/food.dto'
+import { FoodCategory } from './../src/domain/food/enums/food-category.enum'
 
 export const seedFoods: CreateFoodDto[] = [
     {
@@ -7,7 +8,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 600, proteins: 22.6, fats: 51.3, carbohydrates: 9.51, sugars: 4.2, fibers: 12.5, salt: 0 },
         needReview: false,
-        category: 'Noix',
+        category: FoodCategory.FATS,
     },
     {
         name: 'Aubergine, pulpe et peau, rôtie/cuite au four',
@@ -15,7 +16,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 33.8, proteins: 1.31, fats: 0, carbohydrates: 3.83, sugars: 0, fibers: 1.9, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Bacon fumé JUSTIN BRIDOU, 16 tranches soit 160g',
@@ -23,7 +24,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 116, proteins: 23, fats: 2.5, carbohydrates: 0.3, sugars: 0.2, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Charcuterie',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Banane, pulpe, crue 100 gr',
@@ -31,7 +32,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 90.5, proteins: 1.06, fats: 0, carbohydrates: 19.7, sugars: 3.8, fibers: 2.7, salt: 0 },
         needReview: false,
-        category: 'Fruit',
+        category: FoodCategory.FRUITS,
     },
     {
         name: 'Betterave en sachet',
@@ -39,7 +40,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 44, proteins: 0, fats: 0.1, carbohydrates: 7.2, sugars: 6.7, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Beurre de cacahuètes',
@@ -47,7 +48,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 635, proteins: 29, fats: 53, carbohydrates: 9.3, sugars: 4.5, fibers: 5.6, salt: 0 },
         needReview: false,
-        category: 'Légumineuse',
+        category: FoodCategory.LEGUMES,
     },
     {
         name: 'Beurre demi sel',
@@ -55,7 +56,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 726, proteins: 0.6, fats: 55, carbohydrates: 1, sugars: 1, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Blé Ebly portion 65 gr sec',
@@ -63,7 +64,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 350.4, proteins: 12.16, fats: 1.28, carbohydrates: 69.76, sugars: 1.28, fibers: 5.76, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Brocoli surgelé Bio U',
@@ -71,7 +72,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 14, proteins: 1.8, fats: 0.5, carbohydrates: 0.3, sugars: 0.5, fibers: 3, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Butternut',
@@ -79,7 +80,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 45, proteins: 1.23, fats: 0.07, carbohydrates: 10.5, sugars: 3.2, fibers: 2, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Cacao non sucré VAN HOUTEN',
@@ -87,7 +88,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 379, proteins: 20, fats: 21, carbohydrates: 11, sugars: 0.9, fibers: 28, salt: 0 },
         needReview: false,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Carotte',
@@ -95,7 +96,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 40.2, proteins: 0.63, fats: 0, carbohydrates: 7.59, sugars: 0.4, fibers: 2.7, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Champignons',
@@ -103,7 +104,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 21.7, proteins: 2.37, fats: 0.23, carbohydrates: 1.88, sugars: 0, fibers: 1.72, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Chèvre - P\'tit Ste Maure cendré 170 g',
@@ -111,7 +112,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 304, proteins: 19, fats: 25, carbohydrates: 0.7, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Chipolatas U (par 6, 330 gr)',
@@ -119,7 +120,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 272, proteins: 15, fats: 23, carbohydrates: 1.3, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Charcuterie',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Chocolat noir tablette 100 gr',
@@ -127,7 +128,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 593, proteins: 9.5, fats: 45.1, carbohydrates: 32.4, sugars: 24.4, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit chocolaté',
+        category: FoodCategory.SWEET_PRODUCTS,
     },
     {
         name: 'Chocolat pâtissier 71 %',
@@ -135,7 +136,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 601, proteins: 7, fats: 46, carbohydrates: 32, sugars: 28, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit chocolaté',
+        category: FoodCategory.SWEET_PRODUCTS,
     },
     {
         name: 'Chocolat Pépites Koro 70%',
@@ -143,7 +144,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 555, proteins: 9.2, fats: 46, carbohydrates: 31, sugars: 1, fibers: 10, salt: 0 },
         needReview: false,
-        category: 'Produit chocolaté',
+        category: FoodCategory.SWEET_PRODUCTS,
     },
     {
         name: 'Chou kale',
@@ -151,7 +152,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 50, proteins: 3.3, fats: 0.7, carbohydrates: 10, sugars: 0, fibers: 2.4, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Chou-fleur surgelé',
@@ -159,7 +160,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 19, proteins: 1.6, fats: 0.5, carbohydrates: 1.9, sugars: 1.9, fibers: 2.5, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Comté Bio 6 mois',
@@ -167,7 +168,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 418, proteins: 27, fats: 35, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Concombre, pulpe, cru',
@@ -175,7 +176,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 14.7, proteins: 0.56, fats: 0, carbohydrates: 2.23, sugars: 0, fibers: 0.8, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Coquillettes 1/2 Complètes',
@@ -183,7 +184,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 355, proteins: 12, fats: 1.9, carbohydrates: 70, sugars: 3.8, fibers: 4.7, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Cottage Cheese Biocoop 200 gr',
@@ -191,7 +192,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 105, proteins: 13, fats: 4.5, carbohydrates: 3.5, sugars: 3.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Courgette, pulpe et peau, crue',
@@ -199,7 +200,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 16.5, proteins: 1.23, fats: 0.26, carbohydrates: 1.8, sugars: 0, fibers: 1.05, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Couscous 1/2 complet',
@@ -207,7 +208,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 400, proteins: 11, fats: 2, carbohydrates: 71, sugars: 3, fibers: 5, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Crème liquide entière U bio',
@@ -215,7 +216,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 294, proteins: 2.4, fats: 30, carbohydrates: 3.5, sugars: 3.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Crème Soja liquide',
@@ -223,7 +224,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 132, proteins: 3.1, fats: 12, carbohydrates: 3.4, sugars: 1.2, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier végétal',
+        category: FoodCategory.PLANT_BASED,
     },
     {
         name: 'Crevettes',
@@ -231,7 +232,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 74, proteins: 16, fats: 0.8, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Fruits de mer',
+        category: FoodCategory.SEAFOOD,
     },
     {
         name: 'Crozets',
@@ -239,7 +240,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 335, proteins: 12.6, fats: 3.1, carbohydrates: 70.6, sugars: 2, fibers: 6, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Dés de jambon Herta Nature  2x75 gr',
@@ -247,7 +248,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 98, proteins: 18, fats: 2, carbohydrates: 1.9, sugars: 1.5, fibers: 0.5, salt: 0 },
         needReview: false,
-        category: 'Charcuterie',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Double concentré de tomates 3x70g',
@@ -255,7 +256,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 98, proteins: 4.7, fats: 0.5, carbohydrates: 15.7, sugars: 13.2, fibers: 3.6, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Epinards en branche surgelés',
@@ -263,7 +264,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 54, proteins: 5.9, fats: 0.5, carbohydrates: 8.8, sugars: 3.9, fibers: 6.5, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Farine T65',
@@ -271,7 +272,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 339, proteins: 12, fats: 0.7, carbohydrates: 69, sugars: 1.9, fibers: 4.3, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Farine T80',
@@ -279,7 +280,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 350, proteins: 10, fats: 1.9, carbohydrates: 71, sugars: 2.2, fibers: 4.6, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Faux filet',
@@ -287,7 +288,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 151, proteins: 22, fats: 6.7, carbohydrates: 0.6, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Viande',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Feta',
@@ -295,7 +296,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 276, proteins: 16, fats: 23, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Flocons d\'avoine',
@@ -303,7 +304,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 393, proteins: 12, fats: 8.8, carbohydrates: 61, sugars: 1, fibers: 11, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Fromage blanc nature 3% MG (100 gr)',
@@ -311,7 +312,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 74, proteins: 7.3, fats: 3, carbohydrates: 4.3, sugars: 4.3, fibers: 0.5, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Fromage Croque emmental x20 - 340 gr',
@@ -319,7 +320,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 231, proteins: 13.5, fats: 17, carbohydrates: 6, sugars: 4.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Fromage de madame Loïc',
@@ -327,7 +328,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 252, proteins: 5.9, fats: 24, carbohydrates: 3, sugars: 3, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Fromage tartare',
@@ -335,7 +336,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 348, proteins: 7, fats: 34.5, carbohydrates: 2.3, sugars: 2.3, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Gnocchi à poêler U 300 gr',
@@ -343,7 +344,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 189, proteins: 5.7, fats: 2.8, carbohydrates: 34, sugars: 0.5, fibers: 2.6, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Graines de courge',
@@ -351,7 +352,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 585, proteins: 37, fats: 46, carbohydrates: 2, sugars: 1.4, fibers: 6, salt: 0 },
         needReview: false,
-        category: 'Graines',
+        category: FoodCategory.FATS,
     },
     {
         name: 'Graines de lin',
@@ -359,7 +360,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 506, proteins: 23.9, fats: 36.6, carbohydrates: 6.6, sugars: 1.55, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Graines',
+        category: FoodCategory.FATS,
     },
     {
         name: 'Graines de pavot',
@@ -367,7 +368,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 520, proteins: 18, fats: 41.6, carbohydrates: 8.6, sugars: 3, fibers: 19.5, salt: 0 },
         needReview: false,
-        category: 'Graines',
+        category: FoodCategory.FATS,
     },
     {
         name: 'Graines de sésame',
@@ -375,7 +376,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 588, proteins: 18, fats: 50, carbohydrates: 10, sugars: 0.2, fibers: 12, salt: 0 },
         needReview: false,
-        category: 'Graines',
+        category: FoodCategory.FATS,
     },
     {
         name: 'Granola aux noix Koro',
@@ -383,7 +384,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 471, proteins: 14, fats: 25, carbohydrates: 45, sugars: 12, fibers: 8.5, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Granola Noix & Graines U Céréales',
@@ -391,7 +392,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 454, proteins: 13, fats: 18, carbohydrates: 56, sugars: 13, fibers: 7.7, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Haricots Blanc 280 gr',
@@ -399,7 +400,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 109, proteins: 6.5, fats: 0.8, carbohydrates: 12, sugars: 0.6, fibers: 7, salt: 0 },
         needReview: false,
-        category: 'Légumineuse',
+        category: FoodCategory.LEGUMES,
     },
     {
         name: 'Haricots noirs 230 gr',
@@ -407,7 +408,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 95, proteins: 5.8, fats: 0.8, carbohydrates: 13.8, sugars: 0.6, fibers: 4.6, salt: 0 },
         needReview: false,
-        category: 'Légumineuse',
+        category: FoodCategory.LEGUMES,
     },
     {
         name: 'Huile de tournesol',
@@ -415,7 +416,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 828, proteins: 0, fats: 92, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Huile',
+        category: FoodCategory.FATS,
     },
     {
         name: 'Jambons 4 tranches 140 gr',
@@ -423,7 +424,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 116, proteins: 22, fats: 2.8, carbohydrates: 0.7, sugars: 0.7, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Charcuterie',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Knacki (par 6 = 210 gr sans nitrite)',
@@ -431,7 +432,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 264, proteins: 12, fats: 23, carbohydrates: 2.3, sugars: 1.8, fibers: 0.5, salt: 0 },
         needReview: false,
-        category: 'Charcuterie',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Lait de noisettes',
@@ -439,7 +440,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 31, proteins: 0.6, fats: 2.9, carbohydrates: 0.6, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Boisson végétale',
+        category: FoodCategory.PLANT_BASED,
     },
     {
         name: 'Lait demi-écrémé',
@@ -447,7 +448,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 45, proteins: 3.2, fats: 1.6, carbohydrates: 4.7, sugars: 4.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Lait Entier',
@@ -455,7 +456,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 64, proteins: 3.2, fats: 3.6, carbohydrates: 4.7, sugars: 4.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Lardons végétaux LA VIE (150g)',
@@ -463,7 +464,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 218, proteins: 14, fats: 15, carbohydrates: 4.6, sugars: 1.2, fibers: 3.3, salt: 0 },
         needReview: false,
-        category: 'Produit végétal',
+        category: FoodCategory.PLANT_BASED,
     },
     {
         name: 'Lasagnes PANZANI',
@@ -471,7 +472,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 361, proteins: 12, fats: 2, carbohydrates: 72, sugars: 3.7, fibers: 3.6, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Lentilles corails',
@@ -479,7 +480,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 328, proteins: 27.7, fats: 0.8, carbohydrates: 44.9, sugars: 1.29, fibers: 15.4, salt: 0 },
         needReview: false,
-        category: 'Légumineuse',
+        category: FoodCategory.LEGUMES,
     },
     {
         name: 'Lentilles vertes',
@@ -487,7 +488,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 315, proteins: 24, fats: 1.3, carbohydrates: 45, sugars: 1, fibers: 14, salt: 0 },
         needReview: false,
-        category: 'Légumineuse',
+        category: FoodCategory.LEGUMES,
     },
     {
         name: 'Levure de bière en paillettes',
@@ -495,7 +496,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 331, proteins: 47, fats: 4.3, carbohydrates: 15, sugars: 12, fibers: 22, salt: 0 },
         needReview: false,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Maïs sans sucre ajouté 140 gr',
@@ -503,7 +504,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 77, proteins: 2.8, fats: 1.7, carbohydrates: 11, sugars: 5.2, fibers: 3.1, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Maizena',
@@ -511,7 +512,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 355, proteins: 0.5, fats: 0.5, carbohydrates: 86, sugars: 0.5, fibers: 1, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Mayonnaise',
@@ -519,7 +520,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 407, proteins: 1.2, fats: 70, carbohydrates: 1.6, sugars: 1.5, fibers: 0.5, salt: 0 },
         needReview: false,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Meule (estimatif)',
@@ -527,7 +528,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 412, proteins: 27, fats: 33, carbohydrates: 1.8, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Miel de printemps',
@@ -535,7 +536,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 331, proteins: 0.3, fats: 0, carbohydrates: 83, sugars: 83, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Sucre',
+        category: FoodCategory.SWEET_PRODUCTS,
     },
     {
         name: 'Miso (sachet 22 gr)',
@@ -543,7 +544,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 89, proteins: 7.4, fats: 3.6, carbohydrates: 4.3, sugars: 4.1, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Moutarde',
@@ -551,7 +552,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 368, proteins: 5.2, fats: 7.1, carbohydrates: 2.7, sugars: 2, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Mozarella',
@@ -559,7 +560,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 280, proteins: 28, fats: 17, carbohydrates: 3.1, sugars: 1.2, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Navet',
@@ -567,7 +568,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 28, proteins: 0.9, fats: 0.1, carbohydrates: 6, sugars: 3.8, fibers: 1.8, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Noix de cajou, grillée à sec, non salée',
@@ -575,7 +576,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 617, proteins: 17.4, fats: 49, carbohydrates: 23.5, sugars: 11.8, fibers: 5.7, salt: 0 },
         needReview: false,
-        category: 'Noix',
+        category: FoodCategory.FATS,
     },
     {
         name: 'Nouilles en nids',
@@ -583,7 +584,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 316, proteins: 12, fats: 2, carbohydrates: 62, sugars: 3, fibers: 3, salt: 0 },
         needReview: true,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Oeuf, cru 50 gr sans coquille',
@@ -591,7 +592,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 140, proteins: 12.7, fats: 9.83, carbohydrates: 0.27, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Oeuf',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Pain Burger farine complète (87,5 gr)',
@@ -599,7 +600,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 270, proteins: 9.4, fats: 5, carbohydrates: 44, sugars: 4.8, fibers: 5.8, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Pain de mie U (500 g/24 tranches)',
@@ -607,7 +608,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 258, proteins: 8.2, fats: 2.5, carbohydrates: 49, sugars: 3.4, fibers: 3.2, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Pain T65+T80 42gr (1/4 ème morceau)',
@@ -615,7 +616,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 343, proteins: 11.2, fats: 1.47, carbohydrates: 69.8, sugars: 2.02, fibers: 4.42, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Parmesan',
@@ -623,7 +624,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 409, proteins: 31.1, fats: 31, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Patate douce, crue',
@@ -631,7 +632,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 86.3, proteins: 1.51, fats: 0.15, carbohydrates: 18.3, sugars: 12.7, fibers: 2.87, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Pâte brisée maison (280 gr)',
@@ -639,7 +640,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 467, proteins: 16.7, fats: 19, carbohydrates: 41, sugars: 3, fibers: 3, salt: 0 },
         needReview: true,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Pesto aux fanes de radis (maison)',
@@ -647,7 +648,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 435, proteins: 8, fats: 44, carbohydrates: 1, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Petit Suisse 60 gr',
@@ -655,7 +656,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 88, proteins: 9.3, fats: 3.9, carbohydrates: 3.8, sugars: 3.8, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Petits pois surgelés',
@@ -663,7 +664,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 75, proteins: 5.9, fats: 0.5, carbohydrates: 8.8, sugars: 3.9, fibers: 6.5, salt: 0 },
         needReview: false,
-        category: 'Légumineuse',
+        category: FoodCategory.LEGUMES,
     },
     {
         name: 'Poireau, cru',
@@ -671,7 +672,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 32.3, proteins: 1.49, fats: 0.25, carbohydrates: 4.9, sugars: 0, fibers: 2.27, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Pois cassés (230 gr)',
@@ -679,7 +680,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 110, proteins: 3.5, fats: 0.7, carbohydrates: 18.6, sugars: 0.5, fibers: 5.8, salt: 0 },
         needReview: false,
-        category: 'Légumineuse',
+        category: FoodCategory.LEGUMES,
     },
     {
         name: 'Pois chiche (230 gr)',
@@ -687,7 +688,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 134, proteins: 7.1, fats: 2.4, carbohydrates: 21, sugars: 0.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Légumineuse',
+        category: FoodCategory.LEGUMES,
     },
     {
         name: 'Poivre',
@@ -695,7 +696,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 255, proteins: 15.95, fats: 3.26, carbohydrates: 44.5, sugars: 38.3, fibers: 26.5, salt: 0 },
         needReview: false,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Poivron grillés à l\'huile 190 gr',
@@ -703,7 +704,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 158, proteins: 0.9, fats: 15, carbohydrates: 4.1, sugars: 3.9, fibers: 2.6, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Poivron rouge, cru',
@@ -711,7 +712,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 36.6, proteins: 1.06, fats: 0, carbohydrates: 5.98, sugars: 0, fibers: 3.2, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Pomme (fruit)',
@@ -719,7 +720,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 54.9, proteins: 0.5, fats: 0.5, carbohydrates: 11.7, sugars: 11.3, fibers: 2.5, salt: 0 },
         needReview: false,
-        category: 'Fruit',
+        category: FoodCategory.FRUITS,
     },
     {
         name: 'Pomme de terre crue',
@@ -727,7 +728,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 80.5, proteins: 2.16, fats: 0.18, carbohydrates: 16.2, sugars: 15.4, fibers: 1.8, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Porc, filet mignon, cuit',
@@ -735,7 +736,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 168, proteins: 26.1, fats: 7.1, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Viande',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Potimarron',
@@ -743,7 +744,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 38, proteins: 1, fats: 0.3, carbohydrates: 6.88, sugars: 0, fibers: 1.8, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Poudre végétale 15 gr',
@@ -751,7 +752,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 439, proteins: 80, fats: 6.8, carbohydrates: 11, sugars: 0.1, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Supplément',
+        category: FoodCategory.SUPPLEMENTS,
     },
     {
         name: 'Poulet, blanc, cru',
@@ -759,7 +760,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 104, proteins: 23, fats: 1.3, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Viande',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Poulet, cuisse, viande et peau, bouilli/cuit à l\'eau',
@@ -767,7 +768,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 188, proteins: 26.1, fats: 9.1, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Viande',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Protéines de soja Vantastic',
@@ -775,7 +776,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 332, proteins: 49, fats: 1.2, carbohydrates: 29, sugars: 8.6, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Supplément',
+        category: FoodCategory.SUPPLEMENTS,
     },
     {
         name: 'Quinoa Trio en vrac',
@@ -783,7 +784,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 361, proteins: 11, fats: 6.5, carbohydrates: 59, sugars: 2.9, fibers: 13, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Reblochon petit 240 gr',
@@ -791,7 +792,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 329, proteins: 21, fats: 27, carbohydrates: 0.5, sugars: 0.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Ricotta (250 gr)',
@@ -799,7 +800,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 164, proteins: 8, fats: 12, carbohydrates: 6, sugars: 4.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Riz à sushi',
@@ -807,7 +808,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 346, proteins: 5.02, fats: 0.57, carbohydrates: 80.6, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Riz Basmati semi complet',
@@ -815,7 +816,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 355, proteins: 8.4, fats: 2.3, carbohydrates: 73, sugars: 0.5, fibers: 4.3, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Rôti de porc FLEURY MICHON 210 gr 6 tranches',
@@ -823,7 +824,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 127, proteins: 24, fats: 3, carbohydrates: 0.9, sugars: 0.9, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Viande',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Salade de chou Sushi market (115 g)',
@@ -831,7 +832,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 168, proteins: 1.1, fats: 5.6, carbohydrates: 28, sugars: 19, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Sardines au naturel sans arêtes CONNETABLE 161g',
@@ -839,7 +840,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 158, proteins: 22, fats: 7.8, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Poisson',
+        category: FoodCategory.SEAFOOD,
     },
     {
         name: 'Soja crispies au cacao Koro',
@@ -847,7 +848,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 362, proteins: 58, fats: 1.9, carbohydrates: 28, sugars: 9.1, fibers: 1.8, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Son d\'avoine Markal',
@@ -855,7 +856,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 334, proteins: 15, fats: 4.8, carbohydrates: 50, sugars: 2.3, fibers: 17, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Son de blé',
@@ -863,7 +864,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 279, proteins: 15.4, fats: 4.35, carbohydrates: 23.6, sugars: 20.9, fibers: 42, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Sucre de canne Blond',
@@ -871,7 +872,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 398, proteins: 0, fats: 0, carbohydrates: 99.5, sugars: 99.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Sucre',
+        category: FoodCategory.SWEET_PRODUCTS,
     },
     {
         name: 'Tempeh à cuisiner 200 gr',
@@ -879,7 +880,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 179, proteins: 19, fats: 9.4, carbohydrates: 0.5, sugars: 0.4, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Produit végétal',
+        category: FoodCategory.PLANT_BASED,
     },
     {
         name: 'Thon entier au naturel 140 gr',
@@ -887,7 +888,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 109, proteins: 25, fats: 1, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Poisson',
+        category: FoodCategory.SEAFOOD,
     },
     {
         name: 'Tomate grappe, crue',
@@ -895,7 +896,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 20.1, proteins: 0.5, fats: 0, carbohydrates: 3.03, sugars: 0, fibers: 1.5, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Tomates entières en conserve 400 g',
@@ -903,7 +904,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 27, proteins: 1.1, fats: 0.2, carbohydrates: 4.2, sugars: 3.8, fibers: 1.1, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Tomates séchées bocal 140gr net égoutté',
@@ -911,7 +912,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 178, proteins: 3.6, fats: 11.6, carbohydrates: 11.4, sugars: 5.6, fibers: 6.9, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Tortilla de blé complete (géante 58 gr)',
@@ -919,7 +920,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 293, proteins: 9.1, fats: 6, carbohydrates: 47.8, sugars: 2.3, fibers: 5.5, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Tortilla de blé nature (grande 41 gr)',
@@ -927,7 +928,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 299, proteins: 9.1, fats: 5.2, carbohydrates: 53.2, sugars: 2.1, fibers: 1.6, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Viande à bourguignon (macreuse)',
@@ -935,7 +936,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 119, proteins: 24, fats: 2.2, carbohydrates: 0.7, sugars: 0.7, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Viande',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Viande hachée 5 %',
@@ -943,7 +944,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 125, proteins: 20, fats: 5, carbohydrates: 2.3, sugars: 0, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Viande',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Vinaigre pour sushi',
@@ -951,7 +952,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 112, proteins: 0, fats: 0, carbohydrates: 36, sugars: 33, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Whey nutripure',
@@ -959,7 +960,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 380, proteins: 87, fats: 1.9, carbohydrates: 3, sugars: 0.5, fibers: 0, salt: 0 },
         needReview: false,
-        category: 'Supplément',
+        category: FoodCategory.SUPPLEMENTS,
     },
     {
         name: 'Cordon Bleu poulet père dodu',
@@ -967,7 +968,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 201, proteins: 14, fats: 9.1, carbohydrates: 15, sugars: 1.5, fibers: 1.6, salt: 0 },
         needReview: false,
-        category: 'Viande',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Coulis de tomates Tomacouli',
@@ -975,7 +976,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 27, proteins: 1.2, fats: 0.1, carbohydrates: 4.5, sugars: 3.9, fibers: 1.6, salt: 0 },
         needReview: false,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Spaghetti semi-complet biocoop',
@@ -983,7 +984,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 355, proteins: 12, fats: 1.9, carbohydrates: 70, sugars: 3.8, fibers: 4.7, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Poissons surgelés mix 600 g',
@@ -991,7 +992,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 115, proteins: 18, fats: 4.8, carbohydrates: 0.5, sugars: 0, fibers: 0.5, salt: 0 },
         needReview: false,
-        category: 'Poisson',
+        category: FoodCategory.SEAFOOD,
     },
     {
         name: 'Farine d\'épeautre T70',
@@ -999,7 +1000,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 344, proteins: 16, fats: 2.4, carbohydrates: 60, sugars: 6.7, fibers: 11, salt: 0 },
         needReview: false,
-        category: 'Céréale',
+        category: FoodCategory.STARCHES,
     },
     {
         name: 'Oeuf entier',
@@ -1007,7 +1008,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'inconnue',
+        category: FoodCategory.ANIMAL_PROTEINS,
     },
     {
         name: 'Eau',
@@ -1015,7 +1016,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Eau',
+        category: FoodCategory.BEVERAGES,
     },
     {
         name: 'Arôme de banane',
@@ -1023,7 +1024,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'inconnue',
+        category: FoodCategory.SUPPLEMENTS,
     },
     {
         name: 'Psyllium',
@@ -1031,7 +1032,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'inconnue',
+        category: FoodCategory.SUPPLEMENTS,
     },
     {
         name: 'Gruyère',
@@ -1039,7 +1040,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Produit laitier',
+        category: FoodCategory.DAIRY,
     },
     {
         name: 'Sel',
@@ -1047,7 +1048,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Oignon',
@@ -1055,7 +1056,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Ail',
@@ -1063,7 +1064,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Raz-el-Hanout',
@@ -1071,7 +1072,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Epices à couscous',
@@ -1079,7 +1080,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Paprika',
@@ -1087,7 +1088,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Curry',
@@ -1095,7 +1096,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Curcuma',
@@ -1103,7 +1104,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Gingembre',
@@ -1111,7 +1112,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Origan',
@@ -1119,7 +1120,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Cumin',
@@ -1127,7 +1128,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Jus de citron',
@@ -1135,7 +1136,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Bouillon',
@@ -1143,7 +1144,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Chou frisé',
@@ -1151,7 +1152,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Huile de sésame',
@@ -1159,7 +1160,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Huile',
+        category: FoodCategory.FATS,
     },
     {
         name: 'Échalote',
@@ -1167,7 +1168,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Piment',
@@ -1175,7 +1176,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Vinaigre balsamique',
@@ -1183,7 +1184,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Cornichons',
@@ -1191,7 +1192,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
     {
         name: 'Ciboulette',
@@ -1199,7 +1200,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Herbe de provence',
@@ -1207,7 +1208,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Épice',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Vinaigre de cidre',
@@ -1215,7 +1216,7 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Condiment',
+        category: FoodCategory.CONDIMENTS,
     },
     {
         name: 'Laitue',
@@ -1223,6 +1224,6 @@ export const seedFoods: CreateFoodDto[] = [
         density: 1,
         nutrientsPer100: { energyKcal: 0, proteins: 0, fats: 0, carbohydrates: 0, sugars: 0, fibers: 0, salt: 0 },
         needReview: true,
-        category: 'Légume',
+        category: FoodCategory.VEGETABLES,
     },
 ]

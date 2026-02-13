@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer'
-import { Allow, IsArray, IsBoolean, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { Allow, IsArray, IsBoolean, IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 
+import { FoodCategory } from './../../../domain/food/enums/food-category.enum'
 import { NutrientsDto } from './food.dto'
 
 class MeasureItemDto {
@@ -70,9 +71,9 @@ export class UpdateFoodWithMeasuresDto {
     @IsOptional()
     needReview?: boolean
 
-    @IsString()
+    @IsEnum(FoodCategory)
     @IsOptional()
-    category?: string
+    category: FoodCategory
 
     @IsArray()
     @ValidateNested({ each: true })
@@ -90,7 +91,7 @@ export class FoodWithMeasuresDto {
     density: number
     nutrientsPer100: NutrientsDto
     needReview: boolean
-    category: string
+    category: FoodCategory
     @Type(() => MeasureItemDto)
     measures: MeasureItemDto[]
 

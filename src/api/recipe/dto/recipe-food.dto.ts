@@ -2,6 +2,7 @@ import { PartialType } from '@nestjs/mapped-types'
 import { IsString, IsNumber } from 'class-validator'
 import { Types } from 'mongoose'
 
+import { FoodCategory } from './../../../domain/food/enums/food-category.enum'
 import { Nutrients } from './../../../domain/food/schemas/nutrients.schema'
 
 export class CreateRecipeFoodDto {
@@ -30,7 +31,7 @@ export interface IFood {
     density: number
     nutrientsPer100: Nutrients
     needReview: boolean
-    category: string
+    category: FoodCategory
 }
 
 export interface IMeasure {

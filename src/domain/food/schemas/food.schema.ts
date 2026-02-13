@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 
 import { Nutrients } from './nutrients.schema'
+import { FoodCategory } from '../enums/food-category.enum'
 
 @Schema({ collection: 'foods', timestamps: true })
 export class Food {
@@ -21,8 +22,8 @@ export class Food {
     @Prop({ required: true, default: false })
     needReview: boolean
 
-    @Prop({ required: true })
-    category: string
+    @Prop({ required: true, enum: FoodCategory })
+    category: FoodCategory
 
 }
 
