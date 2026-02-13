@@ -10,17 +10,17 @@
 If not in this list, set to 10
 */
 export interface MeasureItf {
-    idTmp: string; // generate a unique id for each measure, with a four-padded digit number e.g., "M0001"
-    foodId: string; // Will be the food name attribute, resolved to ObjectId during import
-    label: string; // will be the unit from SeedRecipe.ingredient
-    grams: number;
-    isDefault: boolean; // Always false
+    idTmp: string // generate a unique id for each measure, with a four-padded digit number e.g., "M0001"
+    foodId: string // Will be the food name attribute, resolved to ObjectId during import
+    label: string // will be the unit from SeedRecipe.ingredient
+    grams: number
+    isDefault: boolean // Always false
 
 }
 
 export interface Ingredient {
-    ingredient: string;
-    unit: string;
+    ingredient: string
+    unit: string
 
 }
 
@@ -147,4 +147,4 @@ export const seedRecipes: Ingredient[] = [
     { ingredient: 'Flocons d\'avoine', unit: 'g' },
     { ingredient: 'Poivron grillés à l\'huile 190 gr', unit: 'g' },
     { ingredient: 'Son d\'avoine Markal', unit: 'g' },
-];
+]
