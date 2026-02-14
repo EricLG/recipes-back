@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
 import { Recipe } from '../../../domain/recipe/schemas/recipe.schema'
+import { RecipeFilterDto } from '../dto/recipe-filter.dto'
 import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from '../dto/recipe-with-relations.dto'
 import { CreateRecipeDto, DetailedRecipeDto, UpdateRecipeDto } from '../dto/recipe.dto'
 import { DetailedRecipeByAggregationDto, RecipeQueryService } from '../services/recipe-query.service'
@@ -17,6 +18,11 @@ export class RecipesController {
     @Post()
     async create(@Body() createRecipeDto: CreateRecipeDto): Promise<Recipe> {
         return this.svcRecipes.create(createRecipeDto)
+    }
+
+    @Post('search')
+    async search(@Body() query: RecipeFilterDto): Promise<Recipe[]> {
+        return this.svcRecipes.search(query)
     }
 
     @Get()

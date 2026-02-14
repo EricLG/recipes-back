@@ -1,11 +1,13 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
+import { FilterQuery, Model } from 'mongoose'
 
 import { RecipeFoodsService } from './recipe-foods.service'
 import { RecipeSubRecipesService } from './recipe-sub-recipes.service'
+import { escapeRegExp } from '../../../common/utils/regex.util'
 import { RecipeMapper } from '../../../domain/recipe/mappers/recipe.mapper'
 import { Recipe, RecipeDocument } from '../../../domain/recipe/schemas/recipe.schema'
+import { RecipeFilterDto } from '../dto/recipe-filter.dto'
 import { IRecipe } from '../dto/recipe-sub-recipe.dto'
 import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from '../dto/recipe-with-relations.dto'
 import { CreateRecipeDto, DetailedRecipeDto, UpdateRecipeDto } from '../dto/recipe.dto'
@@ -244,6 +246,26 @@ export class RecipesService {
 
         this.logger.log(`✅ Complete updateWithRelations - Recipe: ${id}`)
         return this.findDetailedRecipe(id)
+    }
+
+    async search(filter: RecipeFilterDto): Promise<Recipe[]> {
+        const query: FilterQuery<RecipeDocument> = {}
+
+        if (filter.name) {
+            query.name = { $regex: escapeRegExp(filter.name), $options: 'i' }
+        }
+        if (filter.category) {
+            query.category = filter.category
+        }
+        if (filter.vegetarian !== undefined) {
+            query.vegetarian = filter.vegetarian
+        }
+        if (filter.seasons && filter.seasons.length > 0) {
+            query.season = { $in: filter.seasons }
+        }
+
+        this.logger.debug(`[search] Searching recipes with filter: ${JSON.stringify(filter)}`)
+        return this.recipeModel.find(query).sort({ name: 1 }).exec()
     }
 
 }
