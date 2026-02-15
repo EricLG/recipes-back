@@ -4,10 +4,7 @@ import { seedDbFoods } from './seed-db-food'
 import { seedDbRecipes } from './seed-db-recipes'
 
 dotenv.config()
-const user = process.env.MONGODB_USER
-const pwd = process.env.MONGODB_PWD
-const host = process.env.MONGODB_HOST
-const mongoUri = 'mongodb://' + user + ':' + pwd + '@' + host + '/recipes?authSource=recipes'
+const mongoUri = process.env.MONGODB_URI
 
 async function seedAll(mongoUri: string) {
     try {
@@ -26,6 +23,6 @@ async function seedAll(mongoUri: string) {
     }
 }
 
-if (require.main === module) {
+if (require.main === module && mongoUri) {
     seedAll(mongoUri)
 }

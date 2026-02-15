@@ -10,12 +10,8 @@ import { MongooseModule } from '@nestjs/mongoose'
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: (config: ConfigService) => {
-                const user = config.get<string>('MONGODB_USER')
-                const pwd = config.get<string>('MONGODB_PWD')
-                const host = config.get<string>('MONGODB_HOST')
-
                 return {
-                    uri: 'mongodb://' + user + ':' + pwd + '@' + host + '/recipes?authSource=recipes',
+                    uri: config.get<string>('MONGODB_URI'),
                     retryAttempts: 5,
                     retryDelay: 5000,
                 }
