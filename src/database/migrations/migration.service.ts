@@ -2,6 +2,7 @@ import { Injectable, OnModuleInit, Logger } from '@nestjs/common'
 import { InjectModel, InjectConnection } from '@nestjs/mongoose'
 import { Model, Connection } from 'mongoose'
 
+import { RecipeSeason } from './../../domain/recipe/enums/recipe-season.enum'
 import { Migration, MigrationDocument } from './migration.schema'
 import { RecipeVegetarianStatus } from '../../domain/recipe/enums/recipe-vegetarian-status.enum'
 
@@ -17,6 +18,7 @@ export class MigrationService implements OnModuleInit {
 
     async onModuleInit() {
         await this.runMigrateVegetarianToVegetarianStatus()
+        await this.runMigrateRecipeSeasonAllYearToAllSeason()
     }
 
     async runMigrateVegetarianToVegetarianStatus() {
@@ -43,6 +45,31 @@ export class MigrationService implements OnModuleInit {
 
         const updatedCount = (res1.modifiedCount || 0) + (res2.modifiedCount || 0)
         this.logger.log(`Updated ${updatedCount} recipes (true:${res1.modifiedCount}, false:${res2.modifiedCount})`)
+
+        await this.migrationModel.create({ name, appliedAt: new Date() })
+        this.logger.log(`Migration ${name} applied`)
+    }
+
+    async runMigrateRecipeSeasonAllYearToAllSeason() {
+        const name = 'migrate-recipe-season-all-year-to-all-season'
+        const applied = await this.migrationModel.findOne({ name }).lean().exec()
+        if (applied) {
+            this.logger.log(`Migration ${name} already applied`)
+            return
+        }
+
+        const recipesColl = this.connection.collection('recipes')
+        const hasAllYear = await recipesColl.findOne({ season: { $in: ['all_year'] } })
+        if (!hasAllYear) {
+            await this.migrationModel.create({ name, appliedAt: new Date() })
+            this.logger.log(`No 'all_year' season found; migration ${name} recorded as applied`)
+            return
+        }
+
+        const allYear = [RecipeSeason.SPRING, RecipeSeason.SUMMER, RecipeSeason.AUTUMN, RecipeSeason.WINTER]
+        const res1 = await recipesColl.updateMany({ season: { $in: ['all_year'] } }, { $set: { season: allYear } })
+
+        this.logger.log(`Updated ${res1.modifiedCount} recipes`)
 
         await this.migrationModel.create({ name, appliedAt: new Date() })
         this.logger.log(`Migration ${name} applied`)
