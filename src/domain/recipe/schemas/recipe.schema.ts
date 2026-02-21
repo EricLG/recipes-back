@@ -25,7 +25,7 @@ export class Recipe {
     @Prop({
         type: [String],
         enum: RecipeSeason,
-        default: [RecipeSeason.ALL_YEAR],
+        default: [RecipeSeason.SPRING, RecipeSeason.SUMMER, RecipeSeason.AUTUMN, RecipeSeason.WINTER],
         required: true,
     })
     season: RecipeSeason[]

@@ -31,7 +31,7 @@ export async function seedDbRecipes(mongoUri: string) {
                     name: recipeData.name,
                     instructions: recipeData.instructions,
                     vegetarianStatus: recipeData.vegetarianStatus,
-                    season: recipeData.season || [RecipeSeason.ALL_YEAR],
+                    season: [RecipeSeason.SPRING, RecipeSeason.SUMMER, RecipeSeason.AUTUMN, RecipeSeason.WINTER],
                     category: recipeData.category as RecipeCategory,
                     servings: recipeData.servings,
                 }
