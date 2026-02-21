@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { FilterQuery, Model } from 'mongoose'
+import { RecipeSeason } from 'src/domain/recipe/enums/recipe-season.enum'
 
 import { RecipeFoodsService } from './recipe-foods.service'
 import { RecipeSubRecipesService } from './recipe-sub-recipes.service'
@@ -11,6 +12,8 @@ import { RecipeFilterDto } from '../dto/recipe-filter.dto'
 import { IRecipe } from '../dto/recipe-sub-recipe.dto'
 import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from '../dto/recipe-with-relations.dto'
 import { CreateRecipeDto, DetailedRecipeDto, UpdateRecipeDto } from '../dto/recipe.dto'
+
+const ALL_YEAR: RecipeSeason[] = [RecipeSeason.SPRING, RecipeSeason.SUMMER, RecipeSeason.AUTUMN, RecipeSeason.WINTER]
 
 @Injectable()
 export class RecipesService {
@@ -86,7 +89,7 @@ export class RecipesService {
             name: dto.name,
             instructions: dto.instructions,
             vegetarianStatus: dto.vegetarianStatus,
-            season: dto.season,
+            season: (dto.season.length === 0) ? ALL_YEAR : dto.season,
             category: dto.category,
             servings: dto.servings,
         })
@@ -143,7 +146,7 @@ export class RecipesService {
         if (dto.name !== undefined) recipe.name = dto.name
         if (dto.instructions !== undefined) recipe.instructions = dto.instructions
         if (dto.vegetarianStatus !== undefined) recipe.vegetarianStatus = dto.vegetarianStatus
-        if (dto.season !== undefined) recipe.season = dto.season
+        if (dto.season !== undefined) recipe.season = (dto.season.length === 0) ? ALL_YEAR : dto.season
         if (dto.category !== undefined) recipe.category = dto.category
         if (dto.servings !== undefined) recipe.servings = dto.servings
 

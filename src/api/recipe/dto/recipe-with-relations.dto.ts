@@ -66,13 +66,11 @@ export class CreateRecipeWithRelationsDto {
     instructions: string
 
     @IsEnum(RecipeVegetarianStatus)
-    @IsOptional()
-    vegetarianStatus?: RecipeVegetarianStatus
+    vegetarianStatus: RecipeVegetarianStatus
 
     @IsArray()
     @IsEnum(RecipeSeason, { each: true })
-    @IsOptional()
-    season?: RecipeSeason[]
+    season: RecipeSeason[]
 
     @IsEnum(RecipeCategory)
     category: RecipeCategory
