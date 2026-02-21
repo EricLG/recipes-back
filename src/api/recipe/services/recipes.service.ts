@@ -85,7 +85,7 @@ export class RecipesService {
         const createdRecipe = new this.recipeModel({
             name: dto.name,
             instructions: dto.instructions,
-            vegetarian: dto.vegetarian ?? false,
+            vegetarianStatus: dto.vegetarianStatus,
             season: dto.season,
             category: dto.category,
             servings: dto.servings,
@@ -142,7 +142,7 @@ export class RecipesService {
         // Update recipe properties
         if (dto.name !== undefined) recipe.name = dto.name
         if (dto.instructions !== undefined) recipe.instructions = dto.instructions
-        if (dto.vegetarian !== undefined) recipe.vegetarian = dto.vegetarian
+        if (dto.vegetarianStatus !== undefined) recipe.vegetarianStatus = dto.vegetarianStatus
         if (dto.season !== undefined) recipe.season = dto.season
         if (dto.category !== undefined) recipe.category = dto.category
         if (dto.servings !== undefined) recipe.servings = dto.servings
@@ -257,8 +257,8 @@ export class RecipesService {
         if (filter.category) {
             query.category = filter.category
         }
-        if (filter.vegetarian !== undefined) {
-            query.vegetarian = filter.vegetarian
+        if (filter.vegetarianStatus !== undefined) {
+            query.vegetarianStatus = filter.vegetarianStatus
         }
         if (filter.seasons && filter.seasons.length > 0) {
             query.season = { $in: filter.seasons }

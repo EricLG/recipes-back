@@ -21,6 +21,6 @@ export class RecipeFilterDto {
 
     @IsOptional()
     @IsBoolean()
-    vegetarian?: boolean
+    vegetarianStatus?: boolean
 
 }

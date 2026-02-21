@@ -2,6 +2,9 @@ import { Global, Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
 
+import { Migration, MigrationSchema } from './migrations/migration.schema'
+import { MigrationService } from './migrations/migration.service'
+
 @Global()
 @Module({
     imports: [
@@ -17,7 +20,9 @@ import { MongooseModule } from '@nestjs/mongoose'
                 }
             },
         }),
+        MongooseModule.forFeature([{ name: Migration.name, schema: MigrationSchema }]),
     ],
+    providers: [MigrationService],
     exports: [MongooseModule],
 })
 export class DatabaseModule {}

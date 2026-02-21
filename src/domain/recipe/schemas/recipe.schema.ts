@@ -3,6 +3,7 @@ import { Document } from 'mongoose'
 
 import { RecipeCategory } from '../enums/recipe-category.enum'
 import { RecipeSeason } from '../enums/recipe-season.enum'
+import { RecipeVegetarianStatus } from '../enums/recipe-vegetarian-status.enum'
 
 @Schema({ collection: 'recipes', timestamps: true })
 export class Recipe {
@@ -13,8 +14,13 @@ export class Recipe {
     @Prop({ required: true })
     instructions: string
 
-    @Prop({ required: true, default: false })
-    vegetarian: boolean
+    @Prop({
+        type: String,
+        enum: RecipeVegetarianStatus,
+        default: RecipeVegetarianStatus.NON_VEGETARIAN,
+        required: true,
+    })
+    vegetarianStatus: RecipeVegetarianStatus
 
     @Prop({
         type: [String],

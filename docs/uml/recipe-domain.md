@@ -23,7 +23,7 @@ classDiagram
         ObjectId _id
         string name
         string instructions
-        boolean vegetarian
+        RecipeVegetarianStatus vegetarianStatus
         RecipeSeason[] season
         RecipeCategory category
         number servings

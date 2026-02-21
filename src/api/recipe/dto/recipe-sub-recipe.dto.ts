@@ -3,6 +3,7 @@ import { Types } from 'mongoose'
 
 import { RecipeCategory } from './../../../domain/recipe/enums/recipe-category.enum'
 import { RecipeSeason } from './../../../domain/recipe/enums/recipe-season.enum'
+import { RecipeVegetarianStatus } from './../../../domain/recipe/enums/recipe-vegetarian-status.enum'
 import { IPopulatedRecipeFood } from './recipe-food.dto'
 
 export class CreateRecipeSubRecipeDto {
@@ -38,7 +39,7 @@ export interface IRecipe {
     id: string // virtual
     name: string
     instructions: string
-    vegetarian: boolean
+    vegetarianStatus: RecipeVegetarianStatus
     season: RecipeSeason[]
     category: RecipeCategory
     servings: number

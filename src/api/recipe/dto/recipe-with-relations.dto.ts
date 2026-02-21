@@ -1,8 +1,9 @@
 import { Type } from 'class-transformer'
-import { Allow, IsArray, IsBoolean, IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { Allow, IsArray, IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 
 import { RecipeCategory } from '../../../domain/recipe/enums/recipe-category.enum'
 import { RecipeSeason } from '../../../domain/recipe/enums/recipe-season.enum'
+import { RecipeVegetarianStatus } from './../../../domain/recipe/enums/recipe-vegetarian-status.enum'
 
 /**
  * Represents a recipe food item in create/update operations
@@ -64,9 +65,9 @@ export class CreateRecipeWithRelationsDto {
     @IsString()
     instructions: string
 
-    @IsBoolean()
+    @IsEnum(RecipeVegetarianStatus)
     @IsOptional()
-    vegetarian?: boolean
+    vegetarianStatus?: RecipeVegetarianStatus
 
     @IsArray()
     @IsEnum(RecipeSeason, { each: true })
@@ -101,9 +102,9 @@ export class UpdateRecipeWithRelationsDto {
     @IsOptional()
     instructions?: string
 
-    @IsBoolean()
+    @IsEnum(RecipeVegetarianStatus)
     @IsOptional()
-    vegetarian?: boolean
+    vegetarianStatus?: RecipeVegetarianStatus
 
     @IsArray()
     @IsEnum(RecipeSeason, { each: true })

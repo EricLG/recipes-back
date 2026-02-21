@@ -30,7 +30,7 @@ export async function seedDbRecipes(mongoUri: string) {
                 const createRecipeDTO = {
                     name: recipeData.name,
                     instructions: recipeData.instructions,
-                    vegetarian: recipeData.vegetarian,
+                    vegetarianStatus: recipeData.vegetarianStatus,
                     season: recipeData.season || [RecipeSeason.ALL_YEAR],
                     category: recipeData.category as RecipeCategory,
                     servings: recipeData.servings,
