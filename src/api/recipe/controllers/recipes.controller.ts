@@ -4,7 +4,6 @@ import { Recipe } from '../../../domain/recipe/schemas/recipe.schema'
 import { RecipeFilterDto } from '../dto/recipe-filter.dto'
 import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from '../dto/recipe-with-relations.dto'
 import { CreateRecipeDto, DetailedRecipeDto, UpdateRecipeDto } from '../dto/recipe.dto'
-import { DetailedRecipeByAggregationDto, RecipeQueryService } from '../services/recipe-query.service'
 import { RecipesService } from '../services/recipes.service'
 
 @Controller('recipes')
@@ -12,7 +11,6 @@ export class RecipesController {
 
     constructor(
         private readonly svcRecipes: RecipesService,
-        private readonly svcRecipeQuery: RecipeQueryService,
     ) {}
 
     @Post()
@@ -33,11 +31,6 @@ export class RecipesController {
     @Get(':id/detail')
     async findDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeDto> {
         return await this.svcRecipes.findDetailedRecipe(id)
-    }
-
-    @Get(':id/aggregation')
-    async getDetailedRecipe(@Param('id') id: string): Promise<DetailedRecipeByAggregationDto> {
-        return await this.svcRecipeQuery.getDetailedRecipe(id)
     }
 
     @Get(':id')

@@ -5,7 +5,6 @@ import { RecipeFoodsController } from './controllers/recipe-foods.controller'
 import { RecipeSubRecipesController } from './controllers/recipe-sub-recipes.controller'
 import { RecipesController } from './controllers/recipes.controller'
 import { RecipeFoodsService } from './services/recipe-foods.service'
-import { RecipeQueryService } from './services/recipe-query.service'
 import { RecipeSubRecipesService } from './services/recipe-sub-recipes.service'
 import { RecipesService } from './services/recipes.service'
 import { RecipeMapper } from '../../domain/recipe/mappers/recipe.mapper'
@@ -22,7 +21,7 @@ import { Recipe, RecipeSchema } from '../../domain/recipe/schemas/recipe.schema'
         ]),
     ],
     controllers: [RecipesController, RecipeFoodsController, RecipeSubRecipesController],
-    providers: [RecipesService, RecipeFoodsService, RecipeSubRecipesService, RecipeQueryService, RecipeMapper],
-    exports: [RecipesService, RecipeFoodsService, RecipeSubRecipesService, RecipeQueryService, RecipeMapper],
+    providers: [RecipesService, RecipeFoodsService, RecipeSubRecipesService, RecipeMapper],
+    exports: [RecipesService, RecipeFoodsService, RecipeSubRecipesService, RecipeMapper],
 })
 export class RecipeModule {}
