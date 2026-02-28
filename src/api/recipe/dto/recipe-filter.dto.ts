@@ -21,7 +21,8 @@ export class RecipeFilterDto {
     seasons?: RecipeSeason[]
 
     @IsOptional()
-    @IsEnum(RecipeVegetarianStatus)
-    vegetarianStatus?: RecipeVegetarianStatus
+    @IsArray()
+    @IsEnum(RecipeVegetarianStatus, { each: true })
+    vegetarianStatus?: RecipeVegetarianStatus[]
 
 }

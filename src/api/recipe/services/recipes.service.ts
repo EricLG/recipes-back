@@ -260,8 +260,8 @@ export class RecipesService {
         if (filter.category) {
             query.category = filter.category
         }
-        if (filter.vegetarianStatus !== undefined) {
-            query.vegetarianStatus = filter.vegetarianStatus
+        if (filter.vegetarianStatus && filter.vegetarianStatus.length > 0) {
+            query.vegetarianStatus = { $in: filter.vegetarianStatus }
         }
         if (filter.seasons && filter.seasons.length > 0) {
             query.season = { $in: filter.seasons }
