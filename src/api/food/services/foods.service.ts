@@ -4,8 +4,7 @@ import { Model, Types } from 'mongoose'
 
 import { Food, FoodDocument } from '../../../domain/food/schemas/food.schema'
 import { Measure, MeasureDocument } from '../../../domain/food/schemas/measure.schema'
-import { CreateFoodWithMeasuresDto, FoodWithMeasuresDto, UpdateFoodWithMeasuresDto } from '../dto/food-with-measures.dto'
-import { CreateFoodDto, UpdateFoodDto } from '../dto/food.dto'
+import { CreateFoodWithMeasuresDto, FoodWithMeasuresDto, UpdateFoodWithMeasuresDto, CreateFoodDto, UpdateFoodDto } from '../dto/food.dto'
 
 @Injectable()
 export class FoodsService {
@@ -70,6 +69,7 @@ export class FoodsService {
             nutrientsPer100: food.nutrientsPer100,
             needReview: food.needReview,
             category: food.category,
+            source: food.source,
             measures: measures.map(m => ({
                 id: m._id.toString(),
                 label: m.label,
@@ -125,6 +125,7 @@ export class FoodsService {
             nutrientsPer100: savedFood.nutrientsPer100,
             needReview: savedFood.needReview,
             category: savedFood.category,
+            source: savedFood.source,
             measures: createdMeasures.map(m => ({
                 id: m._id.toString(),
                 label: m.label,
@@ -137,22 +138,12 @@ export class FoodsService {
     async updateWithMeasures(id: string, dto: UpdateFoodWithMeasuresDto): Promise<FoodWithMeasuresDto> {
         this.logger.debug(`[updateWithMeasures] Updating food with ID: ${id}`)
 
-        // Check food exists
-        const food = await this.foodModel.findById(id).exec()
+        const food = await this.foodModel.findByIdAndUpdate<FoodDocument>(id, dto).exec()
         if (!food) {
             throw new NotFoundException(`Food with ID ${id} not found`)
         }
 
-        // Update food properties
-        if (dto.name !== undefined) food.name = dto.name
-        if (dto.referenceUnit !== undefined) food.referenceUnit = dto.referenceUnit
-        if (dto.density !== undefined) food.density = dto.density
-        if (dto.nutrientsPer100 !== undefined) food.nutrientsPer100 = dto.nutrientsPer100
-        if (dto.needReview !== undefined) food.needReview = dto.needReview
-        if (dto.category !== undefined) food.category = dto.category
-
-        const savedFood = await food.save()
-        this.logger.log(`✅ Updated food - ID: ${id}, name: "${savedFood.name}"`)
+        this.logger.log(`✅ Updated food - ID: ${id}, name: "${food.name}"`)
 
         // Handle measures sync (upsert: id present = update, id absent = create, missing = delete)
         if (dto.measures !== undefined) {

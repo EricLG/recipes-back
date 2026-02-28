@@ -32,6 +32,7 @@ export interface IFood {
     nutrientsPer100: Nutrients
     needReview: boolean
     category: FoodCategory
+    source: string
 }
 
 export interface IMeasure {
@@ -41,11 +42,6 @@ export interface IMeasure {
     label: string
     grams: number
     isDefault: boolean
-}
-
-// FoodId populated interface - not used, just for reference
-export interface IMeasurePopulated extends Omit<IMeasure, 'foodId'> {
-    foodId: IFood
 }
 
 export interface IRecipeFood {

@@ -25,6 +25,9 @@ export class Food {
     @Prop({ required: true, enum: FoodCategory })
     category: FoodCategory
 
+    @Prop({ default: '' })
+    source: string
+
 }
 
 export type FoodDocument = Food & Document
