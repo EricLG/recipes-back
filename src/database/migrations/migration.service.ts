@@ -19,6 +19,7 @@ export class MigrationService implements OnModuleInit {
     async onModuleInit() {
         await this.runMigrateVegetarianToVegetarianStatus()
         await this.runMigrateRecipeSeasonAllYearToAllSeason()
+        await this.runMigrateSaturatedFattyAcids()
     }
 
     async runMigrateVegetarianToVegetarianStatus() {
@@ -70,6 +71,33 @@ export class MigrationService implements OnModuleInit {
         const res1 = await recipesColl.updateMany({ season: { $in: ['all_year'] } }, { $set: { season: allYear } })
 
         this.logger.log(`Updated ${res1.modifiedCount} recipes`)
+
+        await this.migrationModel.create({ name, appliedAt: new Date() })
+        this.logger.log(`Migration ${name} applied`)
+    }
+
+    async runMigrateSaturatedFattyAcids() {
+        const name = 'migrate-saturated-fatty-acids'
+        const applied = await this.migrationModel.findOne({ name }).lean().exec()
+        if (applied) {
+            this.logger.log(`Migration ${name} already applied`)
+            return
+        }
+
+        // Need to add saturatedFattyAcids field to all foods that don't have it, and set it to 0 (or null) if not present. This is needed because we want to make it a required field in the schema, and we don't want to break existing data.
+        const foodsColl = this.connection.collection('foods')
+        const hasOne = await foodsColl.findOne({ 'nutrientsPer100.saturatedFattyAcids': { $exists: false } })
+        if (!hasOne) {
+            await this.migrationModel.create({ name, appliedAt: new Date() })
+            this.logger.log(`No 'saturatedFattyAcids' field found in foods; migration ${name} recorded as applied`)
+            return
+        }
+
+        const res = await foodsColl.updateMany(
+            { 'nutrientsPer100.saturatedFattyAcids': { $exists: false } },
+            { $set: { 'nutrientsPer100.saturatedFattyAcids': 0 } },
+        )
+        this.logger.log(`Updated ${res.modifiedCount} foods with missing saturatedFattyAcids field`)
 
         await this.migrationModel.create({ name, appliedAt: new Date() })
         this.logger.log(`Migration ${name} applied`)

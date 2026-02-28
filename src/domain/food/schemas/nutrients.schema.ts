@@ -23,4 +23,7 @@ export class Nutrients {
     @Prop({ required: true })
     salt: number
 
+    @Prop({ required: true })
+    saturatedFattyAcids: number
+
 }

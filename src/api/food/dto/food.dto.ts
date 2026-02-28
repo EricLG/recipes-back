@@ -27,6 +27,9 @@ class NutrientsDto {
     @IsNumber()
     salt: number
 
+    @IsNumber()
+    saturatedFattyAcids: number
+
 }
 
 class MeasureItemDto {

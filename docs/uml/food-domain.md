@@ -34,6 +34,7 @@ classDiagram
         number sugars
         number fibers
         number salt
+        number saturatedFattyAcids
     }
 
     class Measure {
