@@ -10,9 +10,6 @@ export class Food {
     @Prop({ required: true })
     name: string
 
-    @Prop({ required: true, default: 'g' })
-    referenceUnit: string
-
     @Prop({ required: true, default: 1 })
     density: number
 

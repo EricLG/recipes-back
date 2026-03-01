@@ -64,7 +64,6 @@ export class FoodsService {
         return {
             id: food._id.toString(),
             name: food.name,
-            referenceUnit: food.referenceUnit,
             density: food.density,
             nutrientsPer100: food.nutrientsPer100,
             needReview: food.needReview,
@@ -91,7 +90,6 @@ export class FoodsService {
         // Create food
         const createdFood = new this.foodModel({
             name: dto.name,
-            referenceUnit: dto.referenceUnit,
             density: dto.density,
             nutrientsPer100: dto.nutrientsPer100,
             needReview: dto.needReview,
@@ -120,7 +118,6 @@ export class FoodsService {
         return {
             id: savedFood._id.toString(),
             name: savedFood.name,
-            referenceUnit: savedFood.referenceUnit,
             density: savedFood.density,
             nutrientsPer100: savedFood.nutrientsPer100,
             needReview: savedFood.needReview,

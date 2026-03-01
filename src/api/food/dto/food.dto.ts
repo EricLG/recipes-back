@@ -53,9 +53,6 @@ export class CreateFoodDto {
     @IsString()
     name: string
 
-    @IsString()
-    referenceUnit: string
-
     @IsNumber()
     density: number
 
@@ -99,7 +96,6 @@ export class FoodWithMeasuresDto {
 
     id: string
     name: string
-    referenceUnit: string
     density: number
     nutrientsPer100: NutrientsDto
     needReview: boolean
