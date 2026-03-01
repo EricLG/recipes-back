@@ -53,9 +53,6 @@ export class CreateFoodDto {
     @IsString()
     name: string
 
-    @IsNumber()
-    density: number
-
     @ValidateNested()
     @Type(() => NutrientsDto)
     nutrientsPer100: NutrientsDto
@@ -96,7 +93,6 @@ export class FoodWithMeasuresDto {
 
     id: string
     name: string
-    density: number
     nutrientsPer100: NutrientsDto
     needReview: boolean
     category: FoodCategory

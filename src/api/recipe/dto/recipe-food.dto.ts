@@ -27,7 +27,6 @@ export interface IFood {
     _id: Types.ObjectId
     id: string
     name: string
-    density: number
     nutrientsPer100: Nutrients
     needReview: boolean
     category: FoodCategory
