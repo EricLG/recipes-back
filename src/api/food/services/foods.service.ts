@@ -25,7 +25,7 @@ export class FoodsService {
     }
 
     async findAll(): Promise<Food[]> {
-        return this.foodModel.find().sort({ name: 1 }).exec()
+        return this.foodModel.find().collation({ locale: 'fr', strength: 2 }).sort({ name: 1 }).exec()
     }
 
     async findOne(id: string): Promise<Food> {

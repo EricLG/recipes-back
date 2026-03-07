@@ -35,7 +35,7 @@ export class RecipesService {
     }
 
     async findAll(): Promise<Recipe[]> {
-        return this.recipeModel.find().sort({ name: 1 }).exec()
+        return this.recipeModel.find().collation({ locale: 'fr', strength: 2 }).sort({ name: 1 }).exec()
     }
 
     async findOne(id: string): Promise<Recipe> {
@@ -268,7 +268,7 @@ export class RecipesService {
         }
 
         this.logger.debug(`[search] Searching recipes with filter: ${JSON.stringify(filter)}`)
-        return this.recipeModel.find(query).sort({ name: 1 }).exec()
+        return this.recipeModel.find(query).collation({ locale: 'fr', strength: 2 }).sort({ name: 1 }).exec()
     }
 
 }
