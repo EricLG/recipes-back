@@ -27,6 +27,8 @@ classDiagram
         RecipeSeason[] season
         RecipeCategory category
         number servings
+        string preparationTime
+        string kitchenTools
     }
 
     class RecipeFood {

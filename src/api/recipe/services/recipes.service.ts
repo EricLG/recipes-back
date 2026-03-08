@@ -89,6 +89,8 @@ export class RecipesService {
             name: dto.name,
             instructions: dto.instructions,
             vegetarianStatus: dto.vegetarianStatus,
+            preparationTime: dto.preparationTime,
+            kitchenTools: dto.kitchenTools,
             season: (dto.season.length === 0) ? ALL_YEAR : dto.season,
             category: dto.category,
             servings: dto.servings,
@@ -149,6 +151,8 @@ export class RecipesService {
         if (dto.season !== undefined) recipe.season = (dto.season.length === 0) ? ALL_YEAR : dto.season
         if (dto.category !== undefined) recipe.category = dto.category
         if (dto.servings !== undefined) recipe.servings = dto.servings
+        if (dto.preparationTime !== undefined) recipe.preparationTime = dto.preparationTime
+        if (dto.kitchenTools !== undefined) recipe.kitchenTools = dto.kitchenTools
 
         const savedRecipe = await recipe.save()
         this.logger.log(`✅ Updated recipe - ID: ${id}, name: "${savedRecipe.name}"`)

@@ -72,6 +72,8 @@ export interface DetailedRecipeDto {
     season: RecipeSeason[]
     category: RecipeCategory
     servings: number
+    preparationTime?: string
+    kitchenTools?: string
     recipeFoods: DetailedRecipeFood[]
     recipeSubRecipes: DetailedRecipeSubRecipe[]
 }

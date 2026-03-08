@@ -18,6 +18,8 @@ export class RecipeMapper {
             season: recipe.season,
             category: recipe.category,
             servings: recipe.servings,
+            preparationTime: recipe.preparationTime,
+            kitchenTools: recipe.kitchenTools,
             recipeFoods: this.mapRecipeFoods(recipeFoods),
             recipeSubRecipes: this.mapRecipeSubRecipes(subRecipes),
         }

@@ -43,6 +43,8 @@ export interface IRecipe {
     season: RecipeSeason[]
     category: RecipeCategory
     servings: number
+    preparationTime?: string
+    kitchenTools?: string
     recipeFoods?: IPopulatedRecipeFood[] // optional, populated separately
 }
 

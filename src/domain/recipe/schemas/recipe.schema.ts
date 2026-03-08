@@ -40,6 +40,12 @@ export class Recipe {
     @Prop({ required: true, min: 1 })
     servings: number
 
+    @Prop()
+    preparationTime: string
+
+    @Prop()
+    kitchenTools: string
+
 }
 
 export type RecipeDocument = Recipe & Document
