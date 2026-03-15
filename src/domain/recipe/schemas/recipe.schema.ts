@@ -49,6 +49,9 @@ export class Recipe {
     @Prop()
     remark: string
 
+    @Prop({ required: false, default: '' })
+    imageUrl: string // Chemin ou URL vers l'image
+
 }
 
 export type RecipeDocument = Recipe & Document

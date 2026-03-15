@@ -21,6 +21,7 @@ export class RecipeMapper {
             preparationTime: recipe.preparationTime,
             kitchenTools: recipe.kitchenTools,
             remark: recipe.remark,
+            imageUrl: recipe.imageUrl,
             recipeFoods: this.mapRecipeFoods(recipeFoods),
             recipeSubRecipes: this.mapRecipeSubRecipes(subRecipes),
         }

@@ -46,6 +46,7 @@ export interface IRecipe {
     preparationTime?: string
     kitchenTools?: string
     remark?: string
+    imageUrl?: string
     recipeFoods?: IPopulatedRecipeFood[] // optional, populated separately
 }
 

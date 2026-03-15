@@ -1,5 +1,9 @@
-import { Module } from '@nestjs/common'
+import { BadRequestException, Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
+import { MulterModule } from '@nestjs/platform-express'
+import { diskStorage } from 'multer'
+import { extname } from 'path'
+import { v4 as uuidv4 } from 'uuid'
 
 import { RecipeFoodsController } from './controllers/recipe-foods.controller'
 import { RecipeSubRecipesController } from './controllers/recipe-sub-recipes.controller'
@@ -19,6 +23,26 @@ import { Recipe, RecipeSchema } from '../../domain/recipe/schemas/recipe.schema'
             { name: RecipeFood.name, schema: RecipeFoodSchema },
             { name: RecipeSubRecipe.name, schema: RecipeSubRecipeSchema },
         ]),
+        MulterModule.register({
+            storage: diskStorage({
+                destination: './uploads/recipes', // dossier de stockage
+                filename: (req, file, cb) => {
+                    // Nom unique pour éviter les collisions
+                    const uuid = uuidv4()
+
+                    const uniqueName = `${uuid}${extname(file.originalname)}`
+                    cb(null, uniqueName)
+                },
+            }),
+            fileFilter: (req, file, cb) => {
+                // Accepte uniquement les images
+                if (!file.mimetype.match(/\/(jpg|jpeg|png|webp)$/)) {
+                    return cb(new BadRequestException('Format d\'image non supporté'), false)
+                }
+                cb(null, true)
+            },
+            limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB max
+        }),
     ],
     controllers: [RecipesController, RecipeFoodsController, RecipeSubRecipesController],
     providers: [RecipesService, RecipeFoodsService, RecipeSubRecipesService, RecipeMapper],

@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common'
+import { FileInterceptor } from '@nestjs/platform-express'
 
 import { Recipe } from '../../../domain/recipe/schemas/recipe.schema'
 import { RecipeFilterDto } from '../dto/recipe-filter.dto'
 import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from '../dto/recipe-with-relations.dto'
-import { CreateRecipeDto, DetailedRecipeDto, UpdateRecipeDto } from '../dto/recipe.dto'
+import { DetailedRecipeDto } from '../dto/recipe.dto'
 import { RecipesService } from '../services/recipes.service'
 
 @Controller('recipes')
@@ -13,9 +14,28 @@ export class RecipesController {
         private readonly svcRecipes: RecipesService,
     ) {}
 
-    @Post()
-    async create(@Body() createRecipeDto: CreateRecipeDto): Promise<Recipe> {
-        return this.svcRecipes.create(createRecipeDto)
+    @Post('with-relations')
+    @UseInterceptors(FileInterceptor('image'))
+    async createWithRelations(
+        @Body('data') rawData: string,
+        @UploadedFile() image?: Express.Multer.File,
+    ): Promise<DetailedRecipeDto> {
+        const dto: CreateRecipeWithRelationsDto = JSON.parse(rawData)
+        const imageUrl = image ? `/api/uploads/recipes/${image.filename}` : ''
+        return this.svcRecipes.createWithRelations(dto, imageUrl)
+    }
+
+    // TODO : gérer suppression image
+    @Put(':id/with-relations')
+    @UseInterceptors(FileInterceptor('image'))
+    async updateWithRelations(
+        @Param('id') id: string,
+        @Body('data') data: string,
+        @UploadedFile() file?: Express.Multer.File,
+    ): Promise<DetailedRecipeDto> {
+        const dto: UpdateRecipeWithRelationsDto = JSON.parse(data)
+        const imageUrl = file ? `/api/uploads/recipes/${file.filename}` : undefined
+        return this.svcRecipes.updateWithRelations(id, dto, imageUrl)
     }
 
     @Post('search')
@@ -36,21 +56,6 @@ export class RecipesController {
     @Get(':id')
     async findOne(@Param('id') id: string): Promise<Recipe> {
         return this.svcRecipes.findOne(id)
-    }
-
-    @Post('with-relations')
-    async createWithRelations(@Body() dto: CreateRecipeWithRelationsDto): Promise<DetailedRecipeDto> {
-        return this.svcRecipes.createWithRelations(dto)
-    }
-
-    @Put(':id')
-    async update(@Param('id') id: string, @Body() updateRecipeDto: UpdateRecipeDto): Promise<Recipe> {
-        return this.svcRecipes.update(id, updateRecipeDto)
-    }
-
-    @Put(':id/with-relations')
-    async updateWithRelations(@Param('id') id: string, @Body() dto: UpdateRecipeWithRelationsDto): Promise<DetailedRecipeDto> {
-        return this.svcRecipes.updateWithRelations(id, dto)
     }
 
     @Delete(':id')

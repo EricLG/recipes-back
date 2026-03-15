@@ -11,7 +11,7 @@ import { Recipe, RecipeDocument } from '../../../domain/recipe/schemas/recipe.sc
 import { RecipeFilterDto } from '../dto/recipe-filter.dto'
 import { IRecipe } from '../dto/recipe-sub-recipe.dto'
 import { CreateRecipeWithRelationsDto, UpdateRecipeWithRelationsDto } from '../dto/recipe-with-relations.dto'
-import { CreateRecipeDto, DetailedRecipeDto, UpdateRecipeDto } from '../dto/recipe.dto'
+import { DetailedRecipeDto } from '../dto/recipe.dto'
 
 const ALL_YEAR: RecipeSeason[] = [RecipeSeason.SPRING, RecipeSeason.SUMMER, RecipeSeason.AUTUMN, RecipeSeason.WINTER]
 
@@ -27,13 +27,6 @@ export class RecipesService {
         private readonly mapper: RecipeMapper,
     ) {}
 
-    async create(createRecipeDto: CreateRecipeDto): Promise<Recipe> {
-        const createdRecipe = new this.recipeModel(createRecipeDto)
-        const saved = await createdRecipe.save()
-        this.logger.log(`✅ Created recipe - ID: ${saved.id}, name: "${saved.name}"`)
-        return saved
-    }
-
     async findAll(): Promise<Recipe[]> {
         return this.recipeModel.find().collation({ locale: 'fr', strength: 2 }).sort({ name: 1 }).exec()
     }
@@ -44,17 +37,6 @@ export class RecipesService {
             throw new NotFoundException(`Recipe with ID ${id} not found`)
         }
         return recipe
-    }
-
-    async update(id: string, updateRecipeDto: UpdateRecipeDto): Promise<Recipe> {
-        const updatedRecipe = await this.recipeModel
-            .findByIdAndUpdate(id, updateRecipeDto, { new: true })
-            .exec()
-        if (!updatedRecipe) {
-            throw new NotFoundException(`Recipe with ID ${id} not found`)
-        }
-        this.logger.log(`✅ Updated recipe - ID: ${id}, name: "${updatedRecipe.name}"`)
-        return updatedRecipe
     }
 
     async remove(id: string): Promise<void> {
@@ -81,7 +63,7 @@ export class RecipesService {
         return this.mapper.toDetailedRecipeDto(recipe as IRecipe, recipeFoods, subRecipes)
     }
 
-    async createWithRelations(dto: CreateRecipeWithRelationsDto): Promise<DetailedRecipeDto> {
+    async createWithRelations(dto: CreateRecipeWithRelationsDto, imageUrl: string): Promise<DetailedRecipeDto> {
         this.logger.debug(`[createWithRelations] Creating recipe with relations - name: "${dto.name}"`)
 
         // Create recipe
@@ -94,6 +76,7 @@ export class RecipesService {
             season: (dto.season.length === 0) ? ALL_YEAR : dto.season,
             category: dto.category,
             servings: dto.servings,
+            imageUrl,
         })
         const savedRecipe = await createdRecipe.save()
         const recipeId = ((savedRecipe as unknown) as { _id?: { toString(): string } })._id?.toString() || ''
@@ -136,7 +119,7 @@ export class RecipesService {
         return this.findDetailedRecipe(recipeId)
     }
 
-    async updateWithRelations(id: string, dto: UpdateRecipeWithRelationsDto): Promise<DetailedRecipeDto> {
+    async updateWithRelations(id: string, dto: UpdateRecipeWithRelationsDto, imageUrl?: string): Promise<DetailedRecipeDto> {
         this.logger.debug(`[updateWithRelations] Updating recipe with relations - ID: ${id}`)
         // Check recipe exists
         const recipe = await this.recipeModel.findById(id).exec()
@@ -154,6 +137,7 @@ export class RecipesService {
         if (dto.preparationTime !== undefined) recipe.preparationTime = dto.preparationTime
         if (dto.kitchenTools !== undefined) recipe.kitchenTools = dto.kitchenTools
         if (dto.remark !== undefined) recipe.remark = dto.remark
+        if (imageUrl !== undefined) recipe.imageUrl = imageUrl
 
         const savedRecipe = await recipe.save()
         this.logger.log(`✅ Updated recipe - ID: ${id}, name: "${savedRecipe.name}"`)

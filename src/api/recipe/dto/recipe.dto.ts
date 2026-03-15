@@ -75,6 +75,7 @@ export interface DetailedRecipeDto {
     preparationTime?: string
     kitchenTools?: string
     remark?: string
+    imageUrl?: string
     recipeFoods: DetailedRecipeFood[]
     recipeSubRecipes: DetailedRecipeSubRecipe[]
 }
