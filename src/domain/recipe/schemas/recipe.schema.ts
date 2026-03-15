@@ -46,6 +46,9 @@ export class Recipe {
     @Prop()
     kitchenTools: string
 
+    @Prop()
+    remark: string
+
 }
 
 export type RecipeDocument = Recipe & Document

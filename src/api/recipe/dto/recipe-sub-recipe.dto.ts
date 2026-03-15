@@ -45,6 +45,7 @@ export interface IRecipe {
     servings: number
     preparationTime?: string
     kitchenTools?: string
+    remark?: string
     recipeFoods?: IPopulatedRecipeFood[] // optional, populated separately
 }
 

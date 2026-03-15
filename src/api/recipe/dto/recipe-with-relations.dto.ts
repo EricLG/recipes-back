@@ -86,6 +86,10 @@ export class CreateRecipeWithRelationsDto {
     @IsOptional()
     kitchenTools?: string
 
+    @IsString()
+    @IsOptional()
+    remark?: string
+
     @IsArray()
     @ValidateNested({ each: true })
     @Type(() => RecipeFoodItemDto)
@@ -132,6 +136,10 @@ export class UpdateRecipeWithRelationsDto {
     @IsString()
     @IsOptional()
     kitchenTools?: string
+
+    @IsString()
+    @IsOptional()
+    remark?: string
 
     @IsArray()
     @ValidateNested({ each: true })

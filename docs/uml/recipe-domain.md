@@ -29,6 +29,7 @@ classDiagram
         number servings
         string preparationTime
         string kitchenTools
+        string remark
     }
 
     class RecipeFood {

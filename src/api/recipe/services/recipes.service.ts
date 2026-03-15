@@ -153,6 +153,7 @@ export class RecipesService {
         if (dto.servings !== undefined) recipe.servings = dto.servings
         if (dto.preparationTime !== undefined) recipe.preparationTime = dto.preparationTime
         if (dto.kitchenTools !== undefined) recipe.kitchenTools = dto.kitchenTools
+        if (dto.remark !== undefined) recipe.remark = dto.remark
 
         const savedRecipe = await recipe.save()
         this.logger.log(`✅ Updated recipe - ID: ${id}, name: "${savedRecipe.name}"`)
