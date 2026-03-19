@@ -56,4 +56,7 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Recipes images
-/uploads
+uploads/**
+!uploads/.gitkeep
+!uploads/recipes/
+!uploads/recipes/.gitkeep
