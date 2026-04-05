@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose'
 
 import { Migration, MigrationSchema } from './migrations/migration.schema'
 import { MigrationService } from './migrations/migration.service'
+import { User, UserSchema } from '../domain/user/schemas/user.schema'
 
 @Global()
 @Module({
@@ -20,7 +21,10 @@ import { MigrationService } from './migrations/migration.service'
                 }
             },
         }),
-        MongooseModule.forFeature([{ name: Migration.name, schema: MigrationSchema }]),
+        MongooseModule.forFeature([
+            { name: Migration.name, schema: MigrationSchema },
+            { name: User.name, schema: UserSchema },
+        ]),
     ],
     providers: [MigrationService],
     exports: [MongooseModule],

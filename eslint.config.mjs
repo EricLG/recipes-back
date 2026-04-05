@@ -32,6 +32,9 @@ export default defineConfig([
             '@stylistic': stylistic
         },
         rules: {
+            "@typescript-eslint/no-unsafe-assignment": 'off',
+            "@typescript-eslint/no-unsafe-member-access": 'off',
+            "@typescript-eslint/no-unsafe-call": 'off',
             '@stylistic/indent': ['error', 4],
             '@stylistic/array-bracket-newline': ['error', { "multiline": true }],
             '@stylistic/brace-style': ['error', '1tbs', { "allowSingleLine": false }],

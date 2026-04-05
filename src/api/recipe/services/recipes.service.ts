@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { FilterQuery, Model } from 'mongoose'
-import { RecipeSeason } from 'src/domain/recipe/enums/recipe-season.enum'
 
 import { RecipeFoodsService } from './recipe-foods.service'
 import { RecipeSubRecipesService } from './recipe-sub-recipes.service'
 import { escapeRegExp } from '../../../common/utils/regex.util'
+import { RecipeSeason } from '../../../domain/recipe/enums/recipe-season.enum'
 import { RecipeMapper } from '../../../domain/recipe/mappers/recipe.mapper'
 import { Recipe, RecipeDocument } from '../../../domain/recipe/schemas/recipe.schema'
 import { RecipeFilterDto } from '../dto/recipe-filter.dto'
