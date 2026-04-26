@@ -9,6 +9,29 @@ This project is a clean POC but follows professional backend practices.
 - Language: TypeScript
 - Architecture: Domain-driven, modular
 
+## Infrastructure
+
+### Development Environment
+- Frontend: Angular 21
+- Access to backend via Angular proxy configuration:
+```json
+{
+  "/api": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
+```
+- CORS: Disabled (Angular proxy handles routing)
+
+### Production Environment
+- Backend and Frontend dockerized
+- Docker-compose manages the stack
+- Frontend Dockerfile uses Nginx image to route requests to backend or Angular
+- CORS: Disabled (NGINX handles routing)
+
 ## Project Structure Rules
 - Domain schemas:
   - src/domain/**/schemas
