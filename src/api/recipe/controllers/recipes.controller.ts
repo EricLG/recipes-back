@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
+import { ThrottlerGuard, Throttle } from '@nestjs/throttler'
 
 import { Public } from '../../../common/decorators/public.decorator'
 import { Roles } from '../../../common/decorators/roles.decorator'
@@ -11,6 +12,7 @@ import { DetailedRecipeDto } from '../dto/recipe.dto'
 import { RecipesService } from '../services/recipes.service'
 
 @Controller('recipes')
+@UseGuards(ThrottlerGuard)
 export class RecipesController {
 
     constructor(
@@ -45,6 +47,7 @@ export class RecipesController {
 
     @Public()
     @Post('search')
+    @Throttle({ medium: { limit: 30, ttl: 60000 } }) // 30 requests per minute
     async search(@Body() query: RecipeFilterDto): Promise<Recipe[]> {
         return this.svcRecipes.search(query)
     }
