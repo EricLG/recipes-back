@@ -6,13 +6,20 @@ import { ThrottlerModule } from '@nestjs/throttler'
 import { ApiModule } from './api/api.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { SchemaValidation } from './common/config/config.validator'
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard'
 import { RolesGuard } from './common/guards/roles.guard'
 import { DatabaseModule } from './database/database.module'
 
 @Module({
     imports: [
-        ConfigModule.forRoot(),
+        ConfigModule.forRoot({
+            isGlobal: true,
+            validationSchema: SchemaValidation,
+            validationOptions: {
+                abortEarly: true,
+            },
+        }),
         ThrottlerModule.forRoot([
             {
                 name: 'short',
