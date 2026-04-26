@@ -6,7 +6,6 @@ import { Model, Connection } from 'mongoose'
 import { RecipeSeason } from './../../domain/recipe/enums/recipe-season.enum'
 import { Migration, MigrationDocument } from './migration.schema'
 import { RecipeVegetarianStatus } from '../../domain/recipe/enums/recipe-vegetarian-status.enum'
-import { UserRole } from '../../domain/user/enums/user-role.enum'
 import { User, UserDocument } from '../../domain/user/schemas/user.schema'
 
 @Injectable()
@@ -25,7 +24,6 @@ export class MigrationService implements OnModuleInit {
         await this.runMigrateVegetarianToVegetarianStatus()
         await this.runMigrateRecipeSeasonAllYearToAllSeason()
         await this.runMigrateSaturatedFattyAcids()
-        await this.seedAdminUsers()
     }
 
     async runMigrateVegetarianToVegetarianStatus() {
@@ -107,48 +105,6 @@ export class MigrationService implements OnModuleInit {
 
         await this.migrationModel.create({ name, appliedAt: new Date() })
         this.logger.log(`Migration ${name} applied`)
-    }
-
-    async seedAdminUsers() {
-        const name = 'seed-admin-user'
-        const applied = await this.migrationModel.findOne({ name }).lean().exec()
-        if (applied) {
-            this.logger.log(`Seeder ${name} already applied`)
-            return
-        }
-
-        const existingAdmin = await this.userModel.findOne({ role: UserRole.ADMIN }).exec()
-        if (existingAdmin) {
-            await this.migrationModel.create({ name, appliedAt: new Date() })
-            this.logger.log(`Admin user already exists; seeder ${name} recorded as applied`)
-            return
-        }
-
-        const defaultPassword = this.svcConfig.get<string>('DEFAULT_ADMIN_PASSWORD')
-        let email = 'eric.le.guellaut@hotmail.fr'
-
-        if (!defaultPassword) {
-            this.logger.error('DEFAULT_ADMIN_PASSWORD not set in environment variables.')
-            throw new Error('DEFAULT_ADMIN_PASSWORD not set in environment variables')
-        }
-        await this.userModel.create({
-            email,
-            name: 'illisae',
-            password: defaultPassword,
-            role: UserRole.ADMIN,
-        })
-        this.logger.log(`Admin user created with email: ${email}. Change the password after first login!`)
-        email = 'maiwenn.gombaud@hotmail.com'
-        await this.userModel.create({
-            email,
-            name: 'Ashera',
-            password: defaultPassword,
-            role: UserRole.ADMIN,
-        })
-        this.logger.log(`Admin user created with email: ${email}. Change the password after first login!`)
-
-        await this.migrationModel.create({ name, appliedAt: new Date() })
-        this.logger.log(`Seeder ${name} applied`)
     }
 
 }
