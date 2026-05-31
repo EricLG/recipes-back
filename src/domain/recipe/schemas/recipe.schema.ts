@@ -40,8 +40,8 @@ export class Recipe {
     @Prop({ required: true, min: 1 })
     servings: number
 
-    @Prop()
-    preparationTime: string
+    @Prop({ type: Number, required: false })
+    preparationTime?: number // Time in minutes
 
     @Prop()
     kitchenTools: string

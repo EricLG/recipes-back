@@ -47,7 +47,7 @@ export class RecipesController {
 
     @Public()
     @Post('search')
-    @Throttle({ medium: { limit: 30, ttl: 60000 } }) // 30 requests per minute
+    @Throttle({ medium: { limit: 60, ttl: 60000 } }) // 30 requests per minute
     async search(@Body() query: RecipeFilterDto): Promise<Recipe[]> {
         return this.svcRecipes.search(query)
     }
