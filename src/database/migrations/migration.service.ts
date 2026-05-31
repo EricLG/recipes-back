@@ -24,6 +24,7 @@ export class MigrationService implements OnModuleInit {
         await this.runMigrateVegetarianToVegetarianStatus()
         await this.runMigrateRecipeSeasonAllYearToAllSeason()
         await this.runMigrateSaturatedFattyAcids()
+        await this.runMigratePreparationTimeStringToNumber()
     }
 
     async runMigrateVegetarianToVegetarianStatus() {
@@ -102,6 +103,87 @@ export class MigrationService implements OnModuleInit {
             { $set: { 'nutrientsPer100.saturatedFattyAcids': 0 } },
         )
         this.logger.log(`Updated ${res.modifiedCount} foods with missing saturatedFattyAcids field`)
+
+        await this.migrationModel.create({ name, appliedAt: new Date() })
+        this.logger.log(`Migration ${name} applied`)
+    }
+
+    private convertPreparationTimeToMinutes(value: string | number | null | undefined): number | null {
+        if (!value) return null
+
+        // If already a number, return it
+        if (typeof value === 'number') return value
+
+        const str = value.toString().trim().toLowerCase()
+        if (str === '') return null
+
+        let totalMinutes = 0
+
+        // Match "1h20" or "1h 20" format (hours and minutes together)
+        const hoursMinutesMatch = str.match(/(\d+)\s*h\s*(\d+)/)
+        if (hoursMinutesMatch) {
+            totalMinutes += parseInt(hoursMinutesMatch[1], 10) * 60 // hours
+            totalMinutes += parseInt(hoursMinutesMatch[2], 10) // minutes
+            this.logger.debug(`Try to convert "${value}" to ${totalMinutes} minutes`)
+            return totalMinutes > 0 ? totalMinutes : null
+        }
+
+        // Match just hours "1h" or "2h"
+        const hoursMatch = str.match(/(\d+)\s*h(?!\d)/)
+        if (hoursMatch) {
+            totalMinutes += parseInt(hoursMatch[1], 10) * 60
+        }
+
+        // Match minutes with explicit "min" keyword like "20 min" or "30 min"
+        const minutesMatch = str.match(/(\d+)\s*(?:min|minutes?)/)
+        if (minutesMatch) {
+            totalMinutes += parseInt(minutesMatch[1], 10)
+        }
+
+        // If no match but string exists, try to parse as pure number
+        if (totalMinutes === 0 && str) {
+            const num = parseInt(str, 10)
+
+            if (!isNaN(num)) return num
+        }
+
+        this.logger.debug(`Try to convert "${value}" to ${totalMinutes} minutes`)
+        return totalMinutes > 0 ? totalMinutes : null
+    }
+
+    async runMigratePreparationTimeStringToNumber() {
+        const name = 'migrate-preparation-time-string-to-number'
+        const applied = await this.migrationModel.findOne({ name }).lean().exec()
+        if (applied) {
+            this.logger.log(`Migration ${name} already applied`)
+            return
+        }
+
+        const recipesColl = this.connection.collection('recipes')
+
+        // Find all recipes with preparationTime field that might be string
+        const recipes = await recipesColl.find({}).toArray()
+        const recipesToUpdate: Array<{ id: any, value: number | null }> = []
+
+        for (const recipe of recipes) {
+            if (recipe.preparationTime !== undefined) {
+                const converted = this.convertPreparationTimeToMinutes(recipe.preparationTime)
+                if (converted !== null || recipe.preparationTime !== null) {
+                    recipesToUpdate.push({ id: recipe._id, value: converted })
+                }
+            }
+        }
+
+        // Update recipes
+        for (const item of recipesToUpdate) {
+            if (item.value === null) {
+                await recipesColl.updateOne({ _id: item.id }, { $unset: { preparationTime: '' } })
+            } else {
+                await recipesColl.updateOne({ _id: item.id }, { $set: { preparationTime: item.value } })
+            }
+        }
+
+        this.logger.log(`Updated ${recipesToUpdate.length} recipes - converted preparationTime from string to number`)
 
         await this.migrationModel.create({ name, appliedAt: new Date() })
         this.logger.log(`Migration ${name} applied`)

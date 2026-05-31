@@ -78,9 +78,9 @@ export class CreateRecipeWithRelationsDto {
     @IsNumber()
     servings: number
 
-    @IsString()
+    @IsNumber()
     @IsOptional()
-    preparationTime?: string
+    preparationTime?: number
 
     @IsString()
     @IsOptional()
@@ -129,9 +129,9 @@ export class UpdateRecipeWithRelationsDto {
     @IsOptional()
     servings?: number
 
-    @IsString()
+    @IsNumber()
     @IsOptional()
-    preparationTime?: string
+    preparationTime?: number
 
     @IsString()
     @IsOptional()

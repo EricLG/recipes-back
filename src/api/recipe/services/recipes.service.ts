@@ -5,6 +5,7 @@ import { FilterQuery, Model } from 'mongoose'
 import { RecipeFoodsService } from './recipe-foods.service'
 import { RecipeSubRecipesService } from './recipe-sub-recipes.service'
 import { escapeRegExp } from '../../../common/utils/regex.util'
+import { RecipePreparationTime } from '../../../domain/recipe/enums/recipe-preparation-time.enum'
 import { RecipeSeason } from '../../../domain/recipe/enums/recipe-season.enum'
 import { RecipeMapper } from '../../../domain/recipe/mappers/recipe.mapper'
 import { Recipe, RecipeDocument } from '../../../domain/recipe/schemas/recipe.schema'
@@ -262,7 +263,20 @@ export class RecipesService {
             query.season = { $in: filter.seasons }
         }
 
-        this.logger.debug(`[search] Searching recipes with filter: ${JSON.stringify(filter)}`)
+        if (filter.preparationTime) {
+            if (filter.preparationTime === RecipePreparationTime.QUICK) {
+                query.preparationTime = { $lte: 30 }
+            } else if (filter.preparationTime === RecipePreparationTime.MODERATE) {
+                query.preparationTime = { $gt: 30, $lte: 60 }
+            } else if (filter.preparationTime === RecipePreparationTime.LONG) {
+                query.preparationTime = { $gt: 60 }
+            } else if (filter.preparationTime === RecipePreparationTime.UNKNOWN) {
+                query.preparationTime = null
+            }
+
+        }
+
+        this.logger.debug(`[search] Searching recipes with filter: ${JSON.stringify(query)}`)
         return this.recipeModel.find(query).collation({ locale: 'fr', strength: 2 }).sort({ name: 1 }).exec()
     }
 
