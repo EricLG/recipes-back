@@ -243,8 +243,14 @@ export class RecipesService {
     async search(filter: RecipeFilterDto): Promise<Recipe[]> {
         const query: FilterQuery<RecipeDocument> = {}
 
-        if (filter.name) {
-            query.name = { $regex: escapeRegExp(filter.name), $options: 'i' }
+        if (filter.text) {
+            const filterText = { $regex: escapeRegExp(filter.text), $options: 'i' }
+
+            query.$or = [
+                { name: filterText },
+                { instructions: filterText },
+                { remark: filterText },
+            ]
         }
         if (filter.category) {
             query.category = filter.category

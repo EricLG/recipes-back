@@ -9,7 +9,7 @@ export class RecipeFilterDto {
     @IsOptional()
     @IsString()
     @MaxLength(40)
-    name?: string
+    text?: string
 
     @IsOptional()
     @IsEnum(RecipeCategory)
