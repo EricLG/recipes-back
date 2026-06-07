@@ -14,6 +14,7 @@ export class RecipeMapper {
             id: recipeId,
             name: recipe.name,
             instructions: recipe.instructions,
+            status: recipe.status,
             vegetarianStatus: recipe.vegetarianStatus,
             season: recipe.season,
             category: recipe.category,
