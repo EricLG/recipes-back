@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { APP_GUARD } from '@nestjs/core'
-import { ThrottlerModule } from '@nestjs/throttler'
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
 
 import { ApiModule } from './api/api.module'
 import { AppController } from './app.controller'
@@ -23,18 +23,18 @@ import { DatabaseModule } from './database/database.module'
         ThrottlerModule.forRoot([
             {
                 name: 'short',
-                ttl: 1000, // 1 second
-                limit: 3, // 3 requests per second
+                ttl: 1000,
+                limit: 10,
             },
             {
                 name: 'medium',
-                ttl: 60000, // 1 minute
-                limit: 30, // 30 requests per minute
+                ttl: 60000,
+                limit: 100,
             },
             {
                 name: 'long',
-                ttl: 60000, // 1 minute
-                limit: 10, // 10 requests per minute (stricter for sensitive endpoints)
+                ttl: 3600000, // 1 heure
+                limit: 1000,
             },
         ]),
         DatabaseModule,
@@ -42,7 +42,10 @@ import { DatabaseModule } from './database/database.module'
     ],
     controllers: [AppController],
     providers: [
-        AppService,
+        {
+            provide: APP_GUARD,
+            useClass: ThrottlerGuard,
+        },
         {
             provide: APP_GUARD,
             useClass: JwtAuthGuard,
@@ -51,6 +54,7 @@ import { DatabaseModule } from './database/database.module'
             provide: APP_GUARD,
             useClass: RolesGuard,
         },
+        AppService,
     ],
 })
 export class AppModule {}

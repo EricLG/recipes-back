@@ -13,8 +13,12 @@ export class AuthController {
 
     @Public()
     @HttpCode(HttpStatus.OK)
+    @Throttle({
+        short: { limit: 3, ttl: 1000 },
+        medium: { limit: 10, ttl: 60000 },
+        long: { limit: 50, ttl: 3600000 },
+    })
     @Post('login')
-    @Throttle({ long: { limit: 5, ttl: 60000 } }) // 5 attempts per minute
     async login(@Body() login: LoginDto): Promise<AuthResponse> {
         return this.authService.login(login)
     }
