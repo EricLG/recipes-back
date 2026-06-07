@@ -6,6 +6,7 @@ import { Food } from '../../../domain/food/schemas/food.schema'
 import { Measure } from '../../../domain/food/schemas/measure.schema'
 import { RecipeCategory } from '../../../domain/recipe/enums/recipe-category.enum'
 import { RecipeSeason } from '../../../domain/recipe/enums/recipe-season.enum'
+import { RecipeStatus } from '../../../domain/recipe/enums/recipe-status.enum'
 import { Recipe } from '../../../domain/recipe/schemas/recipe.schema'
 import { RecipeVegetarianStatus } from './../../../domain/recipe/enums/recipe-vegetarian-status.enum'
 
@@ -16,6 +17,9 @@ export class CreateRecipeDto {
 
     @IsString()
     instructions: string
+
+    @IsEnum(RecipeStatus)
+    status: RecipeStatus
 
     @IsEnum(RecipeVegetarianStatus)
     vegetarianStatus: RecipeVegetarianStatus
@@ -68,6 +72,7 @@ export interface DetailedRecipeDto {
     id: string
     name: string
     instructions: string
+    status: RecipeStatus
     vegetarianStatus: RecipeVegetarianStatus
     season: RecipeSeason[]
     category: RecipeCategory

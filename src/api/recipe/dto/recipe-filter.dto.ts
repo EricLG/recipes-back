@@ -3,6 +3,7 @@ import { IsArray, IsEnum, IsOptional, IsString, MaxLength } from 'class-validato
 import { RecipeCategory } from '../../../domain/recipe/enums/recipe-category.enum'
 import { RecipePreparationTime } from '../../../domain/recipe/enums/recipe-preparation-time.enum'
 import { RecipeSeason } from '../../../domain/recipe/enums/recipe-season.enum'
+import { RecipeStatus } from '../../../domain/recipe/enums/recipe-status.enum'
 import { RecipeVegetarianStatus } from './../../../domain/recipe/enums/recipe-vegetarian-status.enum'
 
 export class RecipeFilterDto {
@@ -20,6 +21,11 @@ export class RecipeFilterDto {
     @IsArray()
     @IsEnum(RecipeSeason, { each: true })
     seasons?: RecipeSeason[]
+
+    @IsOptional()
+    @IsArray()
+    @IsEnum(RecipeStatus, { each: true })
+    status?: RecipeStatus[]
 
     @IsOptional()
     @IsArray()

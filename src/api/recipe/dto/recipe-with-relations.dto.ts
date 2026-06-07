@@ -3,6 +3,7 @@ import { Allow, IsArray, IsEnum, IsNumber, IsOptional, IsString, ValidateNested 
 
 import { RecipeCategory } from '../../../domain/recipe/enums/recipe-category.enum'
 import { RecipeSeason } from '../../../domain/recipe/enums/recipe-season.enum'
+import { RecipeStatus } from '../../../domain/recipe/enums/recipe-status.enum'
 import { RecipeVegetarianStatus } from './../../../domain/recipe/enums/recipe-vegetarian-status.enum'
 
 /**
@@ -65,6 +66,9 @@ export class CreateRecipeWithRelationsDto {
     @IsString()
     instructions: string
 
+    @IsEnum(RecipeStatus)
+    status: RecipeStatus
+
     @IsEnum(RecipeVegetarianStatus)
     vegetarianStatus: RecipeVegetarianStatus
 
@@ -111,6 +115,10 @@ export class UpdateRecipeWithRelationsDto {
     @IsString()
     @IsOptional()
     instructions?: string
+
+    @IsEnum(RecipeStatus)
+    @IsOptional()
+    status?: RecipeStatus
 
     @IsEnum(RecipeVegetarianStatus)
     @IsOptional()

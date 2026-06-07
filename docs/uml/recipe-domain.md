@@ -13,6 +13,7 @@ The Recipe domain depends on the Food domain.
 - RecipeFood is a pivot collection between Recipe and Food
 - RecipeSubRecipe allows a recipe to reference another recipe
 - Sub-recipes are full recipes with their own ingredients and instructions
+- Recipes must have a status: draft or approved
 - Recipe domain depends on Food domain
 - Food domain must never depend on Recipe domain
 - Cycles between recipes must be prevented (no recursive loops)
@@ -23,6 +24,7 @@ classDiagram
         ObjectId _id
         string name
         string instructions
+        RecipeStatus status
         RecipeVegetarianStatus vegetarianStatus
         RecipeSeason[] season
         RecipeCategory category

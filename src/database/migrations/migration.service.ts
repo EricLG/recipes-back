@@ -4,6 +4,7 @@ import { InjectModel, InjectConnection } from '@nestjs/mongoose'
 import { Model, Connection } from 'mongoose'
 
 import { RecipeSeason } from './../../domain/recipe/enums/recipe-season.enum'
+import { RecipeStatus } from './../../domain/recipe/enums/recipe-status.enum'
 import { Migration, MigrationDocument } from './migration.schema'
 import { RecipeVegetarianStatus } from '../../domain/recipe/enums/recipe-vegetarian-status.enum'
 import { User, UserDocument } from '../../domain/user/schemas/user.schema'
@@ -23,6 +24,7 @@ export class MigrationService implements OnModuleInit {
     async onModuleInit() {
         await this.runMigrateVegetarianToVegetarianStatus()
         await this.runMigrateRecipeSeasonAllYearToAllSeason()
+        await this.runMigrateRecipeStatusMissingToDraft()
         await this.runMigrateSaturatedFattyAcids()
         await this.runMigratePreparationTimeStringToNumber()
     }
@@ -76,6 +78,29 @@ export class MigrationService implements OnModuleInit {
         const res1 = await recipesColl.updateMany({ season: { $in: ['all_year'] } }, { $set: { season: allYear } })
 
         this.logger.log(`Updated ${res1.modifiedCount} recipes`)
+
+        await this.migrationModel.create({ name, appliedAt: new Date() })
+        this.logger.log(`Migration ${name} applied`)
+    }
+
+    async runMigrateRecipeStatusMissingToDraft() {
+        const name = 'migrate-recipe-status-missing-to-draft'
+        const applied = await this.migrationModel.findOne({ name }).lean().exec()
+        if (applied) {
+            this.logger.log(`Migration ${name} already applied`)
+            return
+        }
+
+        const recipesColl = this.connection.collection('recipes')
+        const recipesWithoutStatus = await recipesColl.findOne({ status: { $exists: false } })
+        if (!recipesWithoutStatus) {
+            await this.migrationModel.create({ name, appliedAt: new Date() })
+            this.logger.log(`No recipes missing 'status'; migration ${name} recorded as applied`)
+            return
+        }
+
+        const res = await recipesColl.updateMany({ status: { $exists: false } }, { $set: { status: RecipeStatus.DRAFT } })
+        this.logger.log(`Updated ${res.modifiedCount} recipes with missing status to draft`)
 
         await this.migrationModel.create({ name, appliedAt: new Date() })
         this.logger.log(`Migration ${name} applied`)

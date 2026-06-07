@@ -71,6 +71,7 @@ export class RecipesService {
         const createdRecipe = new this.recipeModel({
             name: dto.name,
             instructions: dto.instructions,
+            status: dto.status,
             vegetarianStatus: dto.vegetarianStatus,
             preparationTime: dto.preparationTime,
             kitchenTools: dto.kitchenTools,
@@ -131,6 +132,7 @@ export class RecipesService {
         // Update recipe properties
         if (dto.name !== undefined) recipe.name = dto.name
         if (dto.instructions !== undefined) recipe.instructions = dto.instructions
+        if (dto.status !== undefined) recipe.status = dto.status
         if (dto.vegetarianStatus !== undefined) recipe.vegetarianStatus = dto.vegetarianStatus
         if (dto.season !== undefined) recipe.season = (dto.season.length === 0) ? ALL_YEAR : dto.season
         if (dto.category !== undefined) recipe.category = dto.category
@@ -256,6 +258,9 @@ export class RecipesService {
         if (filter.category) {
             query.category = filter.category
         }
+        if (filter.status && filter.status.length > 0) {
+            query.status = { $in: filter.status }
+        }
         if (filter.vegetarianStatus && filter.vegetarianStatus.length > 0) {
             query.vegetarianStatus = { $in: filter.vegetarianStatus }
         }
@@ -276,7 +281,6 @@ export class RecipesService {
 
         }
 
-        this.logger.debug(`[search] Searching recipes with filter: ${JSON.stringify(query)}`)
         return this.recipeModel.find(query).collation({ locale: 'fr', strength: 2 }).sort({ name: 1 }).exec()
     }
 
