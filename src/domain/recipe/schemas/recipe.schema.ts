@@ -3,8 +3,8 @@ import { Document } from 'mongoose'
 
 import { RecipeCategory } from '../enums/recipe-category.enum'
 import { RecipeSeason } from '../enums/recipe-season.enum'
-import { RecipeVegetarianStatus } from '../enums/recipe-vegetarian-status.enum'
 import { RecipeStatus } from '../enums/recipe-status.enum'
+import { RecipeVegetarianStatus } from '../enums/recipe-vegetarian-status.enum'
 
 @Schema({ collection: 'recipes', timestamps: true })
 export class Recipe {
