@@ -1,13 +1,11 @@
 import { Injectable, OnModuleInit, Logger } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 import { InjectModel, InjectConnection } from '@nestjs/mongoose'
 import { Model, Connection } from 'mongoose'
 
+import { RecipeVegetarianStatus } from '../../domain/recipe/enums/recipe-vegetarian-status.enum'
 import { RecipeSeason } from './../../domain/recipe/enums/recipe-season.enum'
 import { RecipeStatus } from './../../domain/recipe/enums/recipe-status.enum'
 import { Migration, MigrationDocument } from './migration.schema'
-import { RecipeVegetarianStatus } from '../../domain/recipe/enums/recipe-vegetarian-status.enum'
-import { User, UserDocument } from '../../domain/user/schemas/user.schema'
 
 @Injectable()
 export class MigrationService implements OnModuleInit {
@@ -15,9 +13,7 @@ export class MigrationService implements OnModuleInit {
     private readonly logger = new Logger(MigrationService.name)
 
     constructor(
-        private svcConfig: ConfigService,
         @InjectModel(Migration.name) private migrationModel: Model<MigrationDocument>,
-        @InjectModel(User.name) private userModel: Model<UserDocument>,
         @InjectConnection() private readonly connection: Connection,
     ) {}
 
@@ -27,6 +23,23 @@ export class MigrationService implements OnModuleInit {
         await this.runMigrateRecipeStatusMissingToDraft()
         await this.runMigrateSaturatedFattyAcids()
         await this.runMigratePreparationTimeStringToNumber()
+        await this.runMigrateShoppingListIndexes()
+    }
+
+    async runMigrateShoppingListIndexes(): Promise<void> {
+        const name = 'create-shopping-list-unique-indexes'
+        const applied = await this.migrationModel.findOne({ name }).lean().exec()
+        if (applied) {
+            this.logger.log(`Migration ${name} already applied`)
+            return
+        }
+
+        await this.connection.collection('shopping_lists').createIndex(
+            { userId: 1, weekStart: 1 },
+            { unique: true, name: 'user_week_unique' },
+        )
+        await this.migrationModel.create({ name, appliedAt: new Date() })
+        this.logger.log(`Migration ${name} applied`)
     }
 
     async runMigrateVegetarianToVegetarianStatus() {

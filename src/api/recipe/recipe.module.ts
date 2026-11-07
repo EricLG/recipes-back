@@ -8,13 +8,16 @@ import { v4 as uuidv4 } from 'uuid'
 import { RecipeFoodsController } from './controllers/recipe-foods.controller'
 import { RecipeSubRecipesController } from './controllers/recipe-sub-recipes.controller'
 import { RecipesController } from './controllers/recipes.controller'
+import { WeeklyRecipePlansController } from './controllers/weekly-recipe-plans.controller'
 import { RecipeFoodsService } from './services/recipe-foods.service'
 import { RecipeSubRecipesService } from './services/recipe-sub-recipes.service'
 import { RecipesService } from './services/recipes.service'
+import { WeeklyRecipePlansService } from './services/weekly-recipe-plans.service'
 import { RecipeMapper } from '../../domain/recipe/mappers/recipe.mapper'
 import { RecipeFood, RecipeFoodSchema } from '../../domain/recipe/schemas/recipe-food.schema'
 import { RecipeSubRecipe, RecipeSubRecipeSchema } from '../../domain/recipe/schemas/recipe-sub-recipe.schema'
 import { Recipe, RecipeSchema } from '../../domain/recipe/schemas/recipe.schema'
+import { WeeklyRecipePlan, WeeklyRecipePlanSchema } from '../../domain/recipe/schemas/weekly-recipe-plan.schema'
 
 @Module({
     imports: [
@@ -22,6 +25,7 @@ import { Recipe, RecipeSchema } from '../../domain/recipe/schemas/recipe.schema'
             { name: Recipe.name, schema: RecipeSchema },
             { name: RecipeFood.name, schema: RecipeFoodSchema },
             { name: RecipeSubRecipe.name, schema: RecipeSubRecipeSchema },
+            { name: WeeklyRecipePlan.name, schema: WeeklyRecipePlanSchema },
         ]),
         MulterModule.register({
             storage: diskStorage({
@@ -44,8 +48,8 @@ import { Recipe, RecipeSchema } from '../../domain/recipe/schemas/recipe.schema'
             limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB max
         }),
     ],
-    controllers: [RecipesController, RecipeFoodsController, RecipeSubRecipesController],
-    providers: [RecipesService, RecipeFoodsService, RecipeSubRecipesService, RecipeMapper],
+    controllers: [RecipesController, RecipeFoodsController, RecipeSubRecipesController, WeeklyRecipePlansController],
+    providers: [RecipesService, RecipeFoodsService, RecipeSubRecipesService, WeeklyRecipePlansService, RecipeMapper],
     exports: [RecipesService, RecipeFoodsService, RecipeSubRecipesService, RecipeMapper],
 })
 export class RecipeModule {}

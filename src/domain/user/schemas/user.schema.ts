@@ -7,6 +7,9 @@ import { UserRole } from '../enums/user-role.enum'
 @Schema({ collection: 'users', timestamps: true })
 export class User {
 
+    @Prop({ type: [String], default: ['Super U', 'Biocoop'] })
+    shoppingStores: string[]
+
     @Prop({ required: true, unique: true })
     email: string
 
@@ -16,7 +19,7 @@ export class User {
     @Prop({ required: true })
     password: string
 
-    @Prop({ required: true, enum: UserRole, default: UserRole.USER })
+    @Prop({ type: String, required: true, enum: UserRole, default: UserRole.USER })
     role: UserRole
 
 }
